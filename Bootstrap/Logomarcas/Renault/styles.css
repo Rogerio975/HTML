@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .diamond {
+    width: 100px;
+    height: 100px;
+    background-color: #f9cf00;
+    transform: rotate(45deg);
+  }
+  
+  .r-letter {
+    font-size: 64px;
+    color: #000;
+    font-weight: bold;
+    margin-left: -40px;
+  }  

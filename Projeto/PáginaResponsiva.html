@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Responsiva com Bootstrap</title>
+  <!-- Incluindo Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Incluindo Font Awesome para os ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 63px; /* Altura do cabeçalho */
+      left: 0;
+      background-color: #007bff; /* Azul Bootstrap */
+      padding-top: 20px;
+      margin-top: 10px; /* Adicionando margem superior para evitar sobreposição com o cabeçalho */
+      transition: all 0.3s ease;
+    }
+
+    .sidebar h2 {
+      color: #fff;
+      text-align: center;
+    }
+
+    .sidebar a {
+      padding: 10px;
+      display: block;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #0056b3; /* Azul mais escuro */
+    }
+
+    .content {
+      padding: 20px;
+      margin-left: 250px;
+      margin-top: 56px; /* Altura do cabeçalho */
+    }
+
+    /* Ícone do sanduíche */
+    .sanduiche-icon {
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="bg-dark text-white py-3">
+    <div class="container">
+      <h1 class="h3 text-center">Responsividade</h1>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Botão do sanduíche para dispositivos móveis -->
+      <div class="sanduiche-icon d-block d-md-none" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </div>
+      <!-- Fim do botão do sanduíche -->
+      
+      <!-- Barra Lateral -->
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse" id="sidebarCollapse">
+        <div class="sidebar-sticky">
+          <h2>Barra Lateral</h2>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Quem Somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Conteúdo Principal -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 content">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h1 text-center">Conteúdo Principal</h1>
+        </div>
+        <div class="container text-center">
+          <p>Aqui você pode adicionar o conteúdo principal da sua página.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Incluindo jQuery, Popper.js, Bootstrap JS e Font Awesome -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

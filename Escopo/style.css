@@ -1,0 +1,12 @@
+.botao {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .texto {
+    font-size: 16px;
+    color: #333;
+  }  

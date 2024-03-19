@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .logo {
+    width: 200px;
+    height: 100px;
+  }
+  
+  .v {
+    width: 50%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .v-left, .v-right {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: relative;
+  }
+  
+  .v-left {
+    border-width: 0 100px 100px 0;
+    border-color: transparent #004466 transparent transparent;
+  }
+  
+  .v-right {
+    border-width: 0 0 100px 100px;
+    border-color: transparent transparent transparent #004466;
+  }
+  
+  .w {
+    width: 50%;
+    height: 100%;
+    background-color: #004466;
+  }  

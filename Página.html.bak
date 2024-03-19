@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br>">
+<head>
+<meta charset="UTF-8">
+<title>Título da página</title>
+<style type="text/css">
+header{
+background-color: gray;
+}
+</style>
+</head>
+<body>
+<header>
+<p style="text-align: center; color: #C715856">Cabeçalho</p>
+</header>
+<nav>
+Barra de navegação
+</nav>
+<main>
+<h1 style="text-align: center;">Lorem Ipsum</h1>
+<h2 style="background: #7FFFD4; color: hsl(15, 36%, 26%);">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</h2>
+<h3 style="color: red;">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</h3>
+<aside>
+Barra lateral
+</aside>
+<hr>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a <b>feugiat</b> arcu, quis ornare arcu. Cras tempus eros posuere est dapibus ornare sit amet in odio. Ut aliquet nibh a elit pretium, id rutrum massa accumsan. Fusce eu vehicula velit, non molestie lectus. Donec aliquet purus non <br> dui gravida, eu lobortis est rhoncus. Etiam ipsum magna, <font color="blue">semper</font> quis dapibus quis, euismod vitae justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In euismod volutpat aliquam. Maecenas efficitur ex id commodo dictum. Quisque efficitur enim velit, nec accumsan nibh suscipit et. Vivamus lectus eros, consequat et consectetur sed, vehicula quis augue. Maecenas vehicula libero mauris, et gravida nisl faucibus a. Etiam vehicula efficitur felis, ac blandit velit accumsan quis.</p>
+</main>
+</body>
+</html>
