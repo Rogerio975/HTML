@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface de Usuário com JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo!</h1>
+    <div id="mensagem"></div>
+    <button onclick="exibirMensagem()">Clique para saudar</button>
+
+    <script>
+        function exibirMensagem() {
+            var mensagemDiv = document.getElementById("mensagem");
+            mensagemDiv.innerHTML = "Olá, bem-vindo à interface de usuário com JavaScript!";
+        }
+    </script>
+</body>
+</html>
