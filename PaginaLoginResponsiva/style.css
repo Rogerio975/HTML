@@ -66,3 +66,5 @@ a {
         width: 100%;
     }
 }
+
+@media screen and (min-width: 320px) { body { font-size: 80%; background-color: blue;} }
