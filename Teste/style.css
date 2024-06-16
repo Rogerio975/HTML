@@ -1,0 +1,15 @@
+.cartao{
+    text-align: center;
+}
+
+.button{
+    background-color: dodgerblue;
+    border: none;
+    color: antiquewhite;
+    padding: 10px;
+    cursor: pointer;
+}
+
+p{
+    text-align: center;
+}
