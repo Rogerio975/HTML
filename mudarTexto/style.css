@@ -1,0 +1,23 @@
+/* Adicione estilos personalizados para o botão, título e parágrafo aqui */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#meuBotao {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
