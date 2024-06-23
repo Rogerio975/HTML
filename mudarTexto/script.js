@@ -7,4 +7,5 @@ botao.addEventListener('click', function() {
     paragrafo.textContent = "Novo parágrafo com conteúdo dinâmico!";
     botao.textContent = "Botão clicado";
     botao.style.backgroundColor = "#F4A460";
+    paragrafo.style.color = "rgb(123,104,238)";
 });
