@@ -8,4 +8,5 @@ botao.addEventListener('click', function() {
     botao.textContent = "Botão clicado";
     botao.style.backgroundColor = "#F4A460";
     paragrafo.style.color = "rgb(123,104,238)";
+    titulo.style.color = "Orange";
 });
