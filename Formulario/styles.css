@@ -13,7 +13,6 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
 }
 
 nav ul {
@@ -35,4 +34,5 @@ nav ul li a {
 main {
     margin-top: 100px; /* Ajusta conforme a altura do header */
     padding: 20px;
+    text-align: center;
 }
