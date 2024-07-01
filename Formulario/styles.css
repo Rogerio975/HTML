@@ -1,3 +1,17 @@
+/* Explicação das Alterações:
+Flexbox e Responsividade:
+
+Usei flexbox para centralizar elementos e fazer com que o layout se ajuste melhor em diferentes tamanhos de tela.
+Adicionei media queries para ajustar o layout em diferentes larguras de tela (768px e 480px).
+Unidades Flexíveis:
+
+Usei unidades flexíveis (% e vh) para garantir que os elementos se adaptem ao tamanho da tela.
+Outras Melhorias de Estilo:
+
+Adicionei algumas melhorias visuais, como sombras e espaçamento para uma melhor aparência.
+Certifiquei-me de que todos os elementos se ajustem corretamente em dispositivos móveis.
+Com essas alterações, a página HTML deve ser responsiva e funcionar bem em dispositivos de diferentes tamanhos. */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
