@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
 header {
@@ -13,31 +14,36 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    z-index: 1000;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+    padding: 10px;
+    display: block;
 }
 
 main {
-    margin-top: 100px; /* Ajusta conforme a altura do header */
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px); /* Altura total da tela menos a altura do header */
+    padding: 20px;
+    min-height: calc(100vh - 100px);
 }
 
 .form-container {
@@ -45,7 +51,82 @@ main {
     max-width: 400px;
     width: 100%;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(77, 65, 65, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 8px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    header {
+        padding: 15px 0;
+    }
+    
+    .form-container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul li {
+        margin: 0 5px;
+    }
+
+    nav ul li a {
+        padding: 8px;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="email"] {
+        padding: 8px;
+    }
+
+    form input[type="submit"] {
+        padding: 8px;
+    }
 }
