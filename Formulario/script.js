@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
         form.submit();
     });
 
+    // Detecta a tecla Enter e submete o formulário
+    form.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            form.requestSubmit();
+        }
+    });
+
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
