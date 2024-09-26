@@ -1,0 +1,16 @@
+.div1 {
+    background-color: yellow;
+}
+
+.div2 {
+    background-color: rgb(136, 76, 76);
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
