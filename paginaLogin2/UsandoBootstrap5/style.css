@@ -4,6 +4,7 @@ body {
 
 .card {
     border-radius: 10px;
+    width: 22rem;
 }
 
 h2 {
