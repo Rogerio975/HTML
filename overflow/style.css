@@ -1,0 +1,17 @@
+div {
+    background-color: chocolate;
+}
+
+.div1 {
+    overflow: scroll;
+    background-color: yellow;
+}
+
+.div2 {
+    overflow: visible;
+    background-color: brown;
+}
+
+body {
+    background-color: aqua;
+}
