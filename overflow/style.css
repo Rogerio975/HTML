@@ -1,18 +1,21 @@
 div {
-    background-color: chocolate;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .div1 {
-    overflow: scroll;
+    overflow: visible;
     background-color: yellow;
     text-align: right;
+    padding: 10px;
 }
 
 .div2 {
     overflow: visible;
     background-color: brown;
     color: aliceblue;
-    padding: 5px;
+    padding: 10px;
 }
 
 body {
