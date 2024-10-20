@@ -16,6 +16,15 @@ div {
     background-color: brown;
     color: aliceblue;
     padding: 10px;
+
+}
+
+.div3 {
+    overflow: auto;
+    background-color: rgb(180, 136, 136);
+    color: aliceblue;
+    width: 250px;
+    height: 80px;
 }
 
 body {
