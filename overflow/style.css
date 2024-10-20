@@ -5,11 +5,14 @@ div {
 .div1 {
     overflow: scroll;
     background-color: yellow;
+    text-align: right;
 }
 
 .div2 {
     overflow: visible;
     background-color: brown;
+    color: aliceblue;
+    padding: 5px;
 }
 
 body {
