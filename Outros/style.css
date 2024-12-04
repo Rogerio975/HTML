@@ -1,0 +1,28 @@
+/* Remove margens e preenchimentos padrão do body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilização das divs */
+.div1, .div2 {
+    width: 100%; /* Ocupa toda a largura da página */
+    margin: 0; /* Remove margens */
+    padding: 10px; /* Preenchimento interno */
+}
+
+/* Adiciona cor de fundo para as divs */
+.div1 {
+    background-color: yellow;
+}
+
+.div2 {
+    background-color: darkgray;
+}
+
+/* Remove margens dos h1 */
+h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
