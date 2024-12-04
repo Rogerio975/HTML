@@ -5,7 +5,7 @@ body {
 }
 
 /* Estilização das divs */
-.div1, .div2 {
+.div1, .div2, .div3, .div4 {
     width: 100%; /* Ocupa toda a largura da página */
     margin: 0; /* Remove margens */
     padding: 10px; /* Preenchimento interno */
@@ -20,9 +20,35 @@ body {
     background-color: darkgray;
 }
 
+.div3 {
+    background-color: rgb(150, 27, 27);
+}
+
+.div4 {
+    background-color: rgb(78, 156, 95);
+}
+
+.div5 {
+    background-color: aqua;
+    padding: 200px;
+}
+
 /* Remove margens dos h1 */
 h1 {
     margin: 0;
     padding: 0;
     text-align: center;
+}
+
+/* Configuração da container para alinhar div3 e div4 */
+.container {
+    display: flex; /* Flexbox ativa */
+    flex-direction: row; /* Alinha as divs na horizontal */
+    width: 100%; /* Garante que a largura total da página seja usada */
+}
+
+/* Estilização das divs internas */
+.div3, .div4 {
+    flex: 1; /* Faz com que cada div ocupe 50% da largura */
+    text-align: center; /* Alinha o texto no centro */
 }
