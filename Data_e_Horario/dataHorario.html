@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exibir Data e Hora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 20%;
+    }
+    #datetime {
+      font-size: 1.5em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data e Hora Atual</h1>
+  <div id="datetime"></div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+      const formattedTime = now.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('datetime').textContent = `${formattedDate} ${formattedTime}`;
+    }
+
+    // Atualiza a data e hora a cada segundo
+    setInterval(updateDateTime, 1000);
+
+    // Chama a função imediatamente para exibir a data e hora inicial
+    updateDateTime();
+  </script>
+</body>
+</html>
