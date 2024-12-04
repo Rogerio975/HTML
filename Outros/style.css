@@ -4,6 +4,12 @@ body {
     padding: 0;
 }
 
+p {
+    text-align: center;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
 /* Estilização das divs */
 .div1, .div2, .div3, .div4 {
     width: 100%; /* Ocupa toda a largura da página */
@@ -13,7 +19,7 @@ body {
 
 /* Adiciona cor de fundo para as divs */
 .div1 {
-    background-color: yellow;
+    background-color: rgb(173, 173, 63);
 }
 
 .div2 {
