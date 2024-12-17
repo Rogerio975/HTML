@@ -1,0 +1,5 @@
+body {
+    background-color: gainsboro;
+    color: blue;
+    transition: color 0.4s ease-in-out;
+}
