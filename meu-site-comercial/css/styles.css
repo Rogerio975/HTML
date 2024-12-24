@@ -24,6 +24,7 @@ nav a {
     color: #ffffff;
     text-decoration: none;
     padding: 10px 15px;
+    line-height: 1.5; /* Adiciona espaçamento entre linhas */
 }
 
 nav a:hover {
