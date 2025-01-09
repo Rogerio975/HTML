@@ -1,0 +1,38 @@
+.sidebar {
+background-color: blue;
+color: white;
+padding: 20px;
+width: 150px;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar h2 {
+margin: 0;
+text-align: center;
+}
+
+.sidebar a {
+text-decoration: none;
+color: white;
+display: block;
+margin: 10px 0;
+text-align: left;
+}
+
+.sidebar a:hover {
+text-decoration: underline;
+color: yellow;
+}
+
+h1 {
+margin-left: 220px;
+text-align: center;
+}
+
+p {
+margin-left: 420px;
+}
