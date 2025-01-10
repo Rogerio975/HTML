@@ -21,5 +21,27 @@
             <h1>3ª div</h1>
         </div>
     </div>
+
+    <script>
+        let divCounter = 4; // Inicia o contador a partir da 4ª div
+
+        document.querySelectorAll('.container, .container2, .container3').forEach(div => {
+            div.addEventListener('click', () => {
+                const newDiv = document.createElement('div');
+                newDiv.className = `container${divCounter}`;
+                newDiv.innerHTML = `<h1>${divCounter}ª div</h1>`;
+                newDiv.style.backgroundColor = 'white';
+                newDiv.style.width = '50%';
+                newDiv.style.margin = '0 auto';
+                newDiv.style.padding = '20px';
+                newDiv.style.borderRadius = '10px';
+                newDiv.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+                newDiv.style.textAlign = 'center';
+                newDiv.style.color = 'darkgoldenrod';
+                document.querySelector('.great-container').appendChild(newDiv);
+                divCounter++; // Incrementa o contador
+            });
+        });
+    </script>
 </body>
 </html>

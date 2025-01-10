@@ -1,52 +1,26 @@
-body{
+body {
     background-color: darkgoldenrod;
 }
 
-.great-container{
+.great-container {
     display: flex;
+    flex-wrap: wrap; /* Permite que os itens sejam quebrados em várias linhas */
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start; /* Alinha os itens no topo */
     gap: 20px;
+    padding: 20px;
 }
 
-.container{
+.container, .container2, .container3, .container4 {
     background-color: white;
-    width: 50%;
-    margin: 0 auto;
+    width: calc(33.33% - 40px); /* Ajusta a largura para caber 3 divs por linha, considerando o gap */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-.container h1{
-    text-align: center;
-    color: darkgoldenrod;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
-.container2{
-    background-color: white;
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.container2 h1{
-    text-align: center;
-    color: darkgoldenrod;
-}
-
-.container3{
-    background-color: white;
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.container3 h1{
+.container h1, .container2 h1, .container3 h1, .container4 h1 {
     text-align: center;
     color: darkgoldenrod;
 }
