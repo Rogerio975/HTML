@@ -1,0 +1,38 @@
+body{
+    background-color: darkgoldenrod;
+}
+
+.great-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+}
+
+.container{
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.container h1{
+    text-align: center;
+    color: darkgoldenrod;
+}
+
+.container2{
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.container2 h1{
+    text-align: center;
+    color: darkgoldenrod;
+}
