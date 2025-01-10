@@ -36,3 +36,17 @@ body{
     text-align: center;
     color: darkgoldenrod;
 }
+
+.container3{
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.container3 h1{
+    text-align: center;
+    color: darkgoldenrod;
+}
