@@ -1,0 +1,41 @@
+body {
+    background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-size: cover; /* Garante que a imagem cubra toda a área de fundo */
+    margin: 0; /* Remove a margem padrão do body */
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    width: 100%; /* Garante que o header ocupe toda a largura da página */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
