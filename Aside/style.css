@@ -2,6 +2,7 @@ body {
     background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
     background-repeat: no-repeat; /* Evita que a imagem se repita */
     background-size: cover; /* Garante que a imagem cubra toda a área de fundo */
+    background-position: center; /* Centraliza a imagem de fundo */
     margin: 0; /* Remove a margem padrão do body */
 }
 
