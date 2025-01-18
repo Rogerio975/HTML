@@ -19,6 +19,7 @@ h1{
     align-items: center;
     gap: 20px;
     padding-top: 15px;
+    flex-wrap: wrap;
 }
 
 .minha-div{
@@ -50,7 +51,6 @@ h1{
     width: 400px;
     height: 200px;
     border: yellow 1px solid;
-    float: right;
 }
 
 .minha-div2 h1{
@@ -62,6 +62,98 @@ h1{
 }
 
 .minha-div2 p{
+    color: white;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div3{
+    background-color: green;
+    width: 400px;
+    height: 200px;
+    border: yellow 1px solid;
+}
+
+.minha-div3 h1{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div3 p{
+    color: white;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div4{
+    background: linear-gradient(to right, orange, yellow); /* Gradiente de laranja para amarelo */
+    width: 400px;
+    height: 200px;
+    border: yellow 1px solid;
+}
+
+.minha-div4 h1{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div4 p{
+    color: white;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div5{
+    background-color: purple;
+    width: 400px;
+    height: 200px;
+    border: yellow 1px solid;
+}
+
+.minha-div5 h1{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div5 p{
+    color: white;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div6{
+    background: linear-gradient(to right, red, pink); /* Gradiente de vermelho para rosa */
+    width: 400px;
+    height: 200px;
+    border: yellow 1px solid;
+}
+
+.minha-div6 h1{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div6 p{
     color: white;
     text-align: justify;
     font-size: 20px;
