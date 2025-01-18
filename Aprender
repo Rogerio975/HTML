@@ -1,0 +1,41 @@
+* {
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div, .minha-div2, .minha-div3, .minha-div4 {
+    width: 400px;
+    height: 200px;
+    border: yellow 1px solid;
+}
+
+.minha-div p, .minha-div2 p, .minha-div3 p, .minha-div4 p {
+    color: white;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+}
+
+.minha-div2 {
+    background: linear-gradient(to right, blue, lightblue); /* Gradiente de azul para azul claro */
+}
+
+.minha-div3 {
+    background-color: green;
+}
+
+.minha-div4 {
+    background-color: red;
+    clear: both; /* Garante que esta div fique abaixo das divs flutuantes anteriores */
+    margin-top: 20px; /* Adiciona um espaço acima da div */
+}
+
+.minha-div2 h1, .minha-div3 h1, .minha-div4 h1 {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
