@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Example</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: auto 100px;
+      gap: 10px;
+      grid-template-areas:
+        "header header"
+        "sidebar content";
+      height: 300px;
+      border: 2px solid #333;
+    }
+
+    .header {
+      grid-area: header;
+      background-color: lightblue;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background-color: lightcoral;
+    }
+
+    .content {
+      grid-area: content;
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="content">Content</div>
+  </div>
+</body>
+</html>
