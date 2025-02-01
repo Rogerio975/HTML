@@ -41,7 +41,7 @@ body {
 }
 
 .form-group input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 10px; /* Aumenta o espaçamento entre o checkbox e o label */
 }
 
 .checkbox-container {
