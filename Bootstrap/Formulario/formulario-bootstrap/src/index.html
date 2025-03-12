@@ -6,53 +6,65 @@
     <title>Formulário Bootstrap</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        h2 {
+            text-align: center;
+        }
+        .centralizado {
+            display: block;
+            text-align: center;
+        }
+        .nao-centralizado {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2>Formulário de Cadastro</h2>
         <form>
             <div class="form-group">
-                <label for="nome">Nome</label>
+                <label for="nome" class="centralizado">Nome</label>
                 <input type="text" class="form-control" id="nome" required>
             </div>
             <div class="form-group">
-                <label for="sobrenome">Sobrenome</label>
+                <label for="sobrenome" class="centralizado">Sobrenome</label>
                 <input type="text" class="form-control" id="sobrenome" required>
             </div>
             <div class="form-group">
-                <label for="nomeCompleto">Nome Completo</label>
+                <label for="nomeCompleto" class="centralizado">Nome Completo</label>
                 <input type="text" class="form-control" id="nomeCompleto" required>
             </div>
             <div class="form-group">
-                <label for="cpf">CPF</label>
+                <label for="cpf" class="centralizado">CPF</label>
                 <input type="text" class="form-control" id="cpf" required>
             </div>
             <div class="form-group">
-                <label for="endereco">Endereço</label>
+                <label for="endereco" class="centralizado">Endereço</label>
                 <input type="text" class="form-control" id="endereco" required>
             </div>
             <div class="form-group">
-                <label for="cep">CEP</label>
+                <label for="cep" class="centralizado">CEP</label>
                 <input type="text" class="form-control" id="cep" required>
             </div>
             <div class="form-group">
-                <label for="cidade">Cidade</label>
+                <label for="cidade" class="centralizado">Cidade</label>
                 <input type="text" class="form-control" id="cidade" required>
             </div>
             <div class="form-group">
-                <label for="estado">Estado</label>
+                <label for="estado" class="centralizado">Estado</label>
                 <input type="text" class="form-control" id="estado" required>
             </div>
             <div class="form-group">
-                <label for="telefone">Número de Telefone</label>
+                <label for="telefone" class="centralizado">Número de Telefone</label>
                 <input type="tel" class="form-control" id="telefone" required>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="whatsapp">
-                    <label class="form-check-label" for="whatsapp">Esse número é Whatsapp?</label>
+                    <label class="form-check-label nao-centralizado" for="whatsapp">Esse número é Whatsapp?</label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="email" class="centralizado">E-mail</label>
                 <input type="email" class="form-control" id="email" required>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
