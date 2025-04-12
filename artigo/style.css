@@ -37,3 +37,13 @@ article {
     margin-left: auto;
     margin-right: auto;
 }
+
+li {
+    margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+    align-items: center; /* Alinha os itens da lista ao centro */
+    display: flex; /* Define o layout flexível para os itens da lista */
+    justify-content: center; /* Centraliza os itens da lista horizontalmente */
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 10px; /* Espaçamento interno dos itens da lista */
+    background-color: #e9ecef; /* Cor de fundo dos itens da lista */
+}
