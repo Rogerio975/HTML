@@ -47,3 +47,19 @@ li {
     padding: 10px; /* Espaçamento interno dos itens da lista */
     background-color: #e9ecef; /* Cor de fundo dos itens da lista */
 }
+
+p {
+    margin-bottom: 10px; /* Espaçamento entre os parágrafos */
+    text-align: justify; /* Justifica o texto dos parágrafos */
+}
+
+table {
+    width: 100%; /* Define a largura da tabela como 100% do contêiner pai */
+    border-collapse: collapse; /* Remove o espaçamento entre as bordas das células */
+}
+
+td {
+    padding: 10px; /* Espaçamento interno das células da tabela */
+    border: 1px solid #ccc; /* Adiciona uma borda às células da tabela */
+    text-align: center; /* Centraliza o texto nas células da tabela */
+}
