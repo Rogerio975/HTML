@@ -5,7 +5,13 @@
 }
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Define o layout flexível */
+    flex-wrap: wrap; /* Permite que os artigos quebrem linha se necessário */
+    gap: 20px; /* Espaçamento entre os artigos */
+    justify-content: center; /* Centraliza os artigos horizontalmente */
+    padding: 20px; /* Espaçamento interno da página */
     background-color: #f4f4f4;
 }
 header {
@@ -19,12 +25,15 @@ h1 {
 }
 
 article {
-    background-color: #f9f9f9;
-    padding: 20px;
+    flex: 1 1 300px; /* Define largura mínima de 300px e ajusta conforme o espaço disponível */
+    border: 1px solid #ccc; /* Adiciona uma borda ao redor dos artigos */
+    padding: 20px; /* Espaçamento interno dos artigos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
+    background-color: #f9f9f9; /* Cor de fundo dos artigos */
+    max-width: 400px; /* Define uma largura máxima para os artigos */
     border-radius: 5px;
     margin: 20px 0;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
