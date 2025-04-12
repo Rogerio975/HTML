@@ -56,6 +56,7 @@ p {
 table {
     width: 100%; /* Define a largura da tabela como 100% do contêiner pai */
     border-collapse: collapse; /* Remove o espaçamento entre as bordas das células */
+    border: 1px solid #ccc;;
 }
 
 td {
