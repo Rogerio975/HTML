@@ -65,27 +65,5 @@
         Use CSS para estilizar seus artigos e torná-los visualmente atraentes.
     </p>
    </article>
-
-   <article>
-    <p id="conteudo" style="display: none;">
-        Este é um conteúdo adicional que será exibido quando o botão "Mostrar mais" for clicado.
-    </p>
-    <button id="toggleButton" onclick="toggleConteudo()">Mostrar mais</button>
-   </article>
-
-   <script>
-    function toggleConteudo() {
-        const conteudo = document.getElementById('conteudo');
-        const botao = document.getElementById('toggleButton');
-
-        if (conteudo.style.display === 'none') {
-            conteudo.style.display = 'block'; // Mostra o conteúdo
-            botao.textContent = 'Mostrar menos'; // Altera o texto do botão
-        } else {
-            conteudo.style.display = 'none'; // Esconde o conteúdo
-            botao.textContent = 'Mostrar mais'; // Altera o texto do botão
-        }
-    }
-   </script>
 </body>
 </html>
