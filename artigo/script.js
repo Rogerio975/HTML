@@ -1,6 +1,6 @@
-const article = document.querySelector("#content1");
+// const article = document.querySelector("#content1");
 
-function toggleConteudo() {
+// function toggleConteudo() {
     if (article.className == "open") {
       // ler menos
       article.className = "";
@@ -10,4 +10,3 @@ function toggleConteudo() {
       article.className = "open";
       button.innerHTML = "Show less"; // Mostrar menos
     }
- }

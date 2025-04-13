@@ -64,7 +64,3 @@ td {
     border: 1px solid #ccc; /* Adiciona uma borda às células da tabela */
     text-align: center; /* Centraliza o texto nas células da tabela */
 }
-
-article.open {
-    max-height: 1000px;
-}
