@@ -22,6 +22,10 @@ header {
 }
 h1 {
     margin: 0;
+    text-align: center; /* Centraliza o título */
+    font-size: 2.5em; /* Tamanho da fonte do título */
+    color: #35424a; /* Cor do texto do título */
+    font-weight: bold; /* Define o peso da fonte como negrito */  
 }
 
 article {
