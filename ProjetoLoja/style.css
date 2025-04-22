@@ -22,16 +22,24 @@ h1 {
     text-align: center;
 }
 
-.secao2 {                           
-    display: grid;
-    align-items: center;
+.secao2 {
+    display: flex; /* Altera o layout para flexbox */
+    justify-content: space-around; /* Espaçamento entre os itens */
+    align-items: flex-start; /* Alinha os itens ao topo */
     text-align: left;
+    gap: 20px; /* Espaçamento entre as colunas */
 }
 
 .secao2 h3 {
     color: #333;
-    text-align:center;
-    
+    text-align: center;
+}
+
+.secao2 ul {
+    flex: 1; /* Faz com que as listas ocupem o mesmo espaço */
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 ul {
