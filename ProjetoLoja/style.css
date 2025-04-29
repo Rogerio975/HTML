@@ -54,3 +54,16 @@ li {
   margin: 0 10px; /* Espaçamento entre os itens */
   text-align: center; /* Centraliza o texto dentro de cada li */
 }
+
+@media screen and (max-width: 768px) {
+  .secao2 {
+    flex-direction: column; /* Muda para coluna em telas menores */
+    align-items: center; /* Centraliza os itens */
+  }
+
+  .secao2 ul {
+    flex: none; /* Remove o flex para listas em telas menores */
+    margin-bottom: 20px; /* Espaçamento inferior entre as listas */
+  }
+  
+}
