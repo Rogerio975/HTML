@@ -64,6 +64,5 @@ li {
   .secao2 ul {
     flex: none; /* Remove o flex para listas em telas menores */
     margin-bottom: 20px; /* Espaçamento inferior entre as listas */
-  }
-  
+    }
 }
