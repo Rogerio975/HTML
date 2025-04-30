@@ -58,7 +58,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: relative; /* Permite o uso de 'bottom' */
     bottom: 0;
     width: 100%;
 }
