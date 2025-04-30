@@ -43,4 +43,6 @@ main {
 main h2 {
     color: #333; /* Cor do texto do título principal */
     text-align: center;
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    font-size: 24px; /* Tamanho da fonte do título principal */
 }
