@@ -1,0 +1,15 @@
+p#texto_apresentacao {
+    font-size: 20px;
+    color: #333;
+    margin: 20px;
+}
+
+.texto_descricao {
+    font-size: 16px;
+    color: #555;
+    margin: 10px;
+}
+
+.texto_vermelho {
+    color: red;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Seletores CSS</title>
+    <style>
+        /* Seleciona qualquer <p> dentro de um <h1> */
+        h1 p {
+            color: blue;
+            font-size: 14px;
+        }
+
+        /* Seleciona apenas os <p> que são filhos diretos de <h1> */
+        h1 > p {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* Seleciona o <p> imediatamente após um <h1> */
+        h1 + p {
+            color: red;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplo de H1 com P dentro</h1>
+    <p>Este parágrafo está dentro do H1.</p>
+    <p>Mais um parágrafo.</p>
+
+    <h1>
+        Exemplo de H1 com P filho direto
+        <p>Este parágrafo é filho direto do H1.</p>
+        <p>Outro parágrafo.</p>
+    </h1>
+
+    <h1>Exemplo de H1 seguido por P</h1>
+    <p>Este parágrafo vem imediatamente após o H1.</p>
+    <p>Outro parágrafo de exemplo.</p>
+</body>
+</html>
