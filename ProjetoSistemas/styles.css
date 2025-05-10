@@ -162,3 +162,15 @@ button {
         display: none; /* Oculta o footer */
     }
 }
+
+@media screen and (max-width: 384px) and (max-height: 640px) {
+    footer {
+        display: none; /* Oculta o footer */
+    }
+}
+
+@media screen and (max-width: 360px) and (max-height: 740px) {
+    footer {
+        padding: 5px 0; /* Reduz o espaçamento do footer */
+    }
+}
