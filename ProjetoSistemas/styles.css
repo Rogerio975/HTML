@@ -157,7 +157,7 @@ button {
     margin: 0 auto; /* Centraliza o botão horizontalmente */
 }
 
-@media screen and (max-width: 375px) and (max-height: 667px) {
+@media screen and (max-width: 375px) and (max-height: 765px) {
     footer {
         display: none; /* Oculta o footer */
     }
