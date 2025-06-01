@@ -40,18 +40,17 @@
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Exemplo de requisição AJAX usando fetch
+        // Exemplo de atualização AJAX a cada 2 minutos (120000 ms)
         setInterval(function() {
-            fetch('https://worldtimeapi.org/api/timezone/America/Sao_Paulo')
-                .then(response => response.json())
-                .then(data => {
-                    // Atualiza o horário na página com a resposta da API
-                    document.getElementById('currentTime').textContent = data.datetime.substr(11, 8);
-                })
-                .catch(error => {
-                    document.getElementById('currentTime').textContent = 'Erro ao buscar horário';
-                });
-        }, 120000); // A cada 2 minutos
+            // Aqui você pode fazer uma requisição AJAX para buscar dados atualizados
+            // Exemplo usando fetch para buscar o horário de um endpoint (ajuste conforme sua necessidade)
+            // fetch('/api/horario').then(resp => resp.text()).then(data => {
+            //     document.getElementById('currentTime').textContent = data;
+            // });
+
+            // Neste exemplo, apenas atualiza o horário local novamente
+            updateTime();
+        }, 120000);
     </script>
 </body>
 </html>
