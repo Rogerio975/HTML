@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página com Atualização Automática</title>
+    <meta http-equiv="refresh" content="120">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f7f7f7;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+        .time {
+            font-size: 2em;
+            color: #0078d7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Página com Atualização Automática</h1>
+        <p>Esta página será atualizada automaticamente a cada 2 minutos. Aguarde!</p>
+        <p>Horário atual:</p>
+        <div class="time" id="currentTime"></div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('pt-BR');
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Exemplo de atualização AJAX a cada 2 minutos (120000 ms)
+        setInterval(function() {
+            // Aqui você pode fazer uma requisição AJAX para buscar dados atualizados
+            // Exemplo usando fetch para buscar o horário de um endpoint (ajuste conforme sua necessidade)
+            // fetch('/api/horario').then(resp => resp.text()).then(data => {
+            //     document.getElementById('currentTime').textContent = data;
+            // });
+
+            // Neste exemplo, apenas atualiza o horário local novamente
+            updateTime();
+        }, 120000);
+    </script>
+</body>
+</html>
