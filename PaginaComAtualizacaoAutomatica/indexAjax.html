@@ -13,7 +13,7 @@
     <script>
         // Função para buscar e atualizar o horário imediatamente ao carregar a página
         function atualizarHorario() {
-            fetch('https://worldtimeapi.org/api/timezone/America/Sao_Paulo')
+            fetch('https://worldtimeapi.org/api/timezone/America/Bahia')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('currentTime').textContent = data.datetime.substr(11, 8);
