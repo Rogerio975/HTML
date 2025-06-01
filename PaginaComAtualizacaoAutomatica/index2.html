@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       h1 {
+            text-align: center;
+            
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f7f7f7;
+            transition: background 1s ease-in-out;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Cor de fundo</h1>
+    <script>
+        const cores = ['#f7f7f7', '#e0f7fa', '#ffe0b2', '#e1bee7', '#c8e6c9', '#fff9c4'];
+        let corAtual = 0;
+        setInterval(function() {
+            corAtual = (corAtual + 1) % cores.length;
+            document.body.style.background = cores[corAtual];
+        }, 60000); // 60000 ms = 1 minuto
+    </script>
+</body>
+</html>
