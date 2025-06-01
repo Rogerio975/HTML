@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            transition: background 0.5s ease;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;   /* Centraliza horizontalmente */
+            align-items: center;       /* Centraliza verticalmente */
+            animation: changeBackground 60s infinite;
+        }
+        h1 {
+            color: #333;
+        }
+        @keyframes changeBackground {
+            0% { background-color: #f7f7f7; }
+            20% { background-color: #e0f7fa; }
+            40% { background-color: #ffe0b2; }
+            60% { background-color: #e1bee7; }
+            80% { background-color: #c8e6c9; }
+            100% { background-color: #fff9c4; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Texto</h1>
+</body>
+</html>
