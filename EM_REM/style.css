@@ -8,11 +8,6 @@ body {
     font-size: 1rem; /* 16px */
 }
 
-h1 {
-    font-size: 2em; /* 2 x tamanho do body = 32px */
-    margin-bottom: 1.5rem; /* 24px */
-}
-
 p {
     font-size: 1em; /* igual ao body = 16px */
     line-height: 1.5em; /* 24px */
