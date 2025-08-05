@@ -1,0 +1,17 @@
+.container {
+     width: 80%;
+     margin: 0 auto;
+     padding: 20px;
+ }
+
+ .div1, .div2 {
+     background-color: #f0f0f0;
+     border: 1px solid #ccc;
+     padding: 10px;
+     margin-bottom: 20px;
+ }
+
+    .div1 h1, .div2 h2 {
+        color: #333;
+        text-align: center;
+    }
