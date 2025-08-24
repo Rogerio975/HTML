@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="parent-id">
+  <p>hello world 1</p>
+  <p class="test">hello world 2</p>
+  <p>hello world 3</p>
+  <p>hello world 4</p>
+</div>
+<script>
+  const parentElement = document.getElementById('parent-id');
+  const secondParagraph = parentElement.querySelector('.test');
+  console.log(secondParagraph.textContent); // Outputs: hello world 2
+</script>  
+</body>
+</html>
