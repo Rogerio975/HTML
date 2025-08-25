@@ -31,12 +31,17 @@
 <div class="example">Element3</div>
 
 <div>
-<button onclick="mudarTexto()">Alterar texto</button>
+    <button onclick="mudarCor()">Alterar cor</button>
+    <button onclick="mudarTexto()">Alterar texto</button>
 </div>
 
 <script>
 const collection = document.getElementsByClassName("example");
 collection[0].innerHTML = "Hello World!";
+
+function mudarCor() {
+  collection[1].style.color = "red";
+}
 
 function mudarTexto() {
   collection[2].innerHTML = "Texto alterado!";
