@@ -15,6 +15,9 @@
             justify-content: center;
             height: 100vh;
         }
+        div {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -25,10 +28,19 @@
 
 <div class="example">Element1</div>
 <div class="example">Element2</div>
+<div class="example">Element3</div>
+
+<div>
+<button onclick="mudarTexto()">Alterar texto</button>
+</div>
 
 <script>
 const collection = document.getElementsByClassName("example");
 collection[0].innerHTML = "Hello World!";
+
+function mudarTexto() {
+  collection[2].innerHTML = "Texto alterado!";
+}
 </script>
 
 </body>
