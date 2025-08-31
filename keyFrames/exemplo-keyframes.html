@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de Keyframes</title>
+    <style>
+        .quadrado {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            animation: moverECor 2s infinite alternate;
+        }
+
+        @keyframes moverECor {
+            0% {
+                left: 0;
+                background: red;
+            }
+            50% {
+                left: 150px;
+                background: yellow;
+            }
+            100% {
+                left: 300px;
+                background: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quadrado"></div>
+</body>
+</html>
