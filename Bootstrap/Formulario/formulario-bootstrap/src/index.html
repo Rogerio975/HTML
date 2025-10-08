@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="nomeCompleto" class="centralizado">Nome Completo</label>
-                <input type="text" class="form-control" id="nomeCompleto" required>
+                <input type="text" class="form-control" id="nomeCompleto" required readonly>
             </div>
             <div class="form-group">
                 <label for="cpf" class="centralizado">CPF</label>
@@ -74,5 +74,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nome = document.getElementById('nome');
+            const sobrenome = document.getElementById('sobrenome');
+            const nomeCompleto = document.getElementById('nomeCompleto');
+
+            function atualizarNomeCompleto() {
+                const n = (nome.value || '').trim();
+                const s = (sobrenome.value || '').trim();
+                nomeCompleto.value = [n, s].filter(Boolean).join(' ');
+            }
+
+            nome.addEventListener('input', atualizarNomeCompleto);
+            sobrenome.addEventListener('input', atualizarNomeCompleto);
+        });
+    </script>
 </body>
 </html>
