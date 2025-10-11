@@ -6,12 +6,7 @@
     height: 100vh;
     background-color: #f0f0f0;
     padding: 20px;
-}
-
-.list {
-    display: flex;
     flex-wrap: wrap;
-    gap: 15px;
 }
 
 .item {
