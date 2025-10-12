@@ -22,7 +22,9 @@ Este repositório é um pequeno exemplo de layout usando Flexbox em HTML/CSS. O 
 ## Exemplos concretos de mudanças aceitáveis
 
 - Adicionar breakpoint mobile: exemplo em `style.css` usando `@media (max-width: 600px)` para mudar `.container { flex-direction: column }`.
+- Adicionar breakpoint mobile: exemplo já presente em `style.css` usando `@media (max-width: 600px)` para mudar `.container { flex-direction: column }`.
 - Alterar `.item` para definir `min-width: 120px` em vez de depender só de `flex:1` se itens colapsarem em telas pequenas.
+- Alterar `.item` para definir `min-width: 120px` em vez de depender só de `flex:1` se itens colapsarem em telas pequenas. O arquivo `style.css` já contém um exemplo (`min-width:120px`) no breakpoint móvel.
 - Trocar `gap` ou `padding` para ajustar espaçamento — preserve proporção visual com base nas medidas existentes (gap:15px, padding:20px).
 
 ## Convenções do repositório
@@ -33,6 +35,13 @@ Este repositório é um pequeno exemplo de layout usando Flexbox em HTML/CSS. O 
 ## Comandos de desenvolvedor (local)
 
 - Este é um projeto estático. Para testar localmente, abra `index.html` no navegador ou sirva com um servidor estático (ex.: `Live Server` extension do VS Code ou `python -m http.server`).
+ - Este é um projeto estático. Para testar localmente, abra `index.html` no navegador ou sirva com um servidor estático (ex.: `Live Server` extension do VS Code ou `python -m http.server`).
+
+Passo rápido para testar o breakpoint móvel:
+
+1. Abra `index.html` no navegador.
+2. Abra as DevTools (F12) e ative o modo de dispositivo responsivo.
+3. Reduza a largura do viewport para <= 600px e verifique se os itens passam a empilhar verticalmente (container em column) e cada `.item` ocupa a largura total.
 
 ## Integrações e dependências externas
 
