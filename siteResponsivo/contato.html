@@ -20,6 +20,41 @@
     button.primary{ background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer }
     .theme-btn{ background:none; border:1px solid var(--accent); color:var(--accent); padding:8px 12px; border-radius:6px; cursor:pointer }
     footer{ text-align:center; margin-top:24px; opacity:0.9 }
+    .nav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.sub-links a {
+  text-decoration: none;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+@media(min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sub-links {
+    flex-direction: row;
+    margin-top: 0;
+    margin-left: 12px;
+  }
+
+  .sub-links a {
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -31,15 +66,18 @@
   </header>
 
   <nav class="top container">
-    <div>
-      <a class="back" href="index.html">← Início</a>
-      <a href="sobre.html" style="margin-left:12px; text-decoration:none; color:var(--text);">Sobre</a>
-      <a href="servicos.html" style="margin-left:12px; text-decoration:none; color:var(--text);">Serviços</a>
+  <div class="nav-links">
+    <a class="back" href="index.html">← Voltar ao Início</a>
+    <div class="sub-links">
+      <a href="sobre.html">Sobre</a>
+      <a href="servicos.html">Serviços</a>
     </div>
-    <div>
-      <button class="theme-btn" id="themeToggle">Alternar Tema</button>
-    </div>
-  </nav>
+  </div>
+  <div>
+    <button class="theme-btn" id="themeToggle">Alternar Tema</button>
+  </div>
+</nav>
+
 
   <main class="container">
     <section class="card">
