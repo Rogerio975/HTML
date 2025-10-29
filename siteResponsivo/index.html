@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu com Modo Escuro</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --header-color: #0077cc;
+      --menu-bg: #f4f4f4;
+      --link-hover: #e0e0e0;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --header-color: #005fa3;
+      --menu-bg: #1e1e1e;
+      --link-hover: #333333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--header-color);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: var(--menu-bg);
+      position: relative;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu li {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .menu li a {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: background 0.3s;
+    }
+
+    .menu li a:hover {
+      background-color: var(--link-hover);
+    }
+
+    .hamburguer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .hamburguer svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--header-color);
+      transition: transform 0.3s ease;
+    }
+
+    .hamburguer.active svg {
+      transform: rotate(90deg);
+    }
+
+    .toggle-theme {
+      background: none;
+      border: 1px solid var(--header-color);
+      color: var(--header-color);
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .hamburguer {
+        display: none;
+      }
+
+      .menu {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .menu li {
+        border: none;
+      }
+
+      .menu li a {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Menu com Modo Escuro</h1>
+  </header>
+
+  <nav>
+    <div class="hamburguer" onclick="toggleMenu(this)">
+      <svg viewBox="0 0 100 80">
+        <rect width="100" height="10"></rect>
+        <rect y="30" width="100" height="10"></rect>
+        <rect y="60" width="100" height="10"></rect>
+      </svg>
+      <button class="toggle-theme" onclick="toggleTheme()">🌙 Alternar Tema</button>
+    </div>
+    <ul class="menu" id="menu">
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    function toggleMenu(icon) {
+      const menu = document.getElementById('menu');
+      icon.classList.toggle('active');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+
+</body>
+</html>
