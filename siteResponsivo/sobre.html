@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre — Site Responsivo</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #222222;
+      --accent: #0077cc;
+      --card: #f7f7f7;
+    }
+    body.dark{ --bg:#121212; --text:#eaeaea; --accent:#66a7e0; --card:#1e1e1e; }
+    body{ margin:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:var(--bg); color:var(--text); }
+    header{ background:var(--accent); color:#fff; padding:24px; text-align:center; }
+    .container{ max-width:1000px; margin:24px auto; padding:0 16px; }
+    .intro{ background:var(--card); padding:18px; border-radius:8px; }
+    h1{ margin:0 0 8px 0; }
+    p.lead{ margin:0; opacity:0.95; }
+    .grid{ display:grid; grid-template-columns:1fr; gap:16px; margin-top:18px; }
+    .card{ background:var(--card); padding:16px; border-radius:8px; }
+    nav.top{ display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:transparent; }
+    nav.top a{ color:var(--text); text-decoration:none; margin-right:12px; }
+    .back{ font-weight:600; color:var(--accent); }
+    footer{ text-align:center; padding:20px; margin-top:26px; opacity:0.9; }
+    .theme-btn{ background:none; border:1px solid var(--accent); color:var(--accent); padding:8px 12px; border-radius:6px; cursor:pointer; }
+    @media(min-width:768px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Sobre nós</h1>
+      <p style="margin-top:8px;">Um site de demonstração responsivo — feito com HTML e CSS simples.</p>
+    </div>
+  </header>
+
+  <nav class="top container">
+    <div>
+      <a class="back" href="index.html">← Voltar para Início</a>
+    </div>
+    <div>
+      <button class="theme-btn" id="themeToggle">Alternar Tema</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="intro">
+      <h2>O que é este projeto?</h2>
+      <p class="lead">Este é um exemplo simples de página "Sobre" para um site responsivo. Serve como modelo para conteúdo informativo sobre uma organização, projeto ou pessoa.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Missão</h3>
+        <p>Nossa missão é criar interfaces claras e acessíveis que funcionem em qualquer dispositivo. Focamos em usabilidade, desempenho e simplicidade.</p>
+      </article>
+
+      <article class="card">
+        <h3>Equipe</h3>
+        <p>Um pequeno time multidisciplinar — desenvolvedores, designers e entusiastas que gostam de aprender e compartilhar conhecimento.</p>
+      </article>
+
+      <article class="card">
+        <h3>Valores</h3>
+        <p>Transparência, qualidade e aprendizagem contínua. Acreditamos em construir coisas que ajudam outras pessoas.</p>
+      </article>
+
+      <article class="card">
+        <h3>Contato</h3>
+        <p>Quer colaborar ou saber mais? Envie um e-mail para <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>.</p>
+      </article>
+    </section>
+
+    <footer>
+      <small>© 2025 — Site Responsivo. Feito para demonstração.</small>
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      // opcional: preservar preferência no localStorage
+      if(document.body.classList.contains('dark')) localStorage.setItem('theme','dark'); else localStorage.removeItem('theme');
+    });
+    // restaurar preferência se houver
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  </script>
+</body>
+</html>
