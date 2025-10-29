@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menu com Modo Escuro</title>
   <style>
     :root {
       --bg-color: #ffffff;
-      --text-color: #333333;
+      --text-color: #333;
       --header-color: #0077cc;
       --menu-bg: #f4f4f4;
       --link-hover: #e0e0e0;
@@ -18,7 +18,7 @@
       --text-color: #f0f0f0;
       --header-color: #005fa3;
       --menu-bg: #1e1e1e;
-      --link-hover: #333333;
+      --link-hover: #333;
     }
 
     body {
@@ -38,7 +38,14 @@
 
     nav {
       background-color: var(--menu-bg);
-      position: relative;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      flex-wrap: wrap;
     }
 
     .menu {
@@ -61,15 +68,14 @@
       transition: background 0.3s;
     }
 
-    .menu li a:hover {
+    .menu li a:hover,
+    .menu li a:focus {
       background-color: var(--link-hover);
     }
 
     .hamburguer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
+      background: none;
+      border: none;
       cursor: pointer;
     }
 
@@ -122,26 +128,28 @@
   </header>
 
   <nav>
-    <div class="hamburguer" onclick="toggleMenu(this)">
-      <svg viewBox="0 0 100 80">
-        <rect width="100" height="10"></rect>
-        <rect y="30" width="100" height="10"></rect>
-        <rect y="60" width="100" height="10"></rect>
-      </svg>
-      <button class="toggle-theme" onclick="toggleTheme()">🌙 Alternar Tema</button>
+    <div class="nav-container">
+      <button class="hamburguer" onclick="toggleMenu(this)" aria-label="Abrir menu">
+        <svg viewBox="0 0 100 80">
+          <rect width="100" height="10"></rect>
+          <rect y="30" width="100" height="10"></rect>
+          <rect y="60" width="100" height="10"></rect>
+        </svg>
+      </button>
+      <button class="toggle-theme" onclick="toggleTheme()" aria-label="Alternar tema">🌙 Alternar Tema</button>
     </div>
     <ul class="menu" id="menu">
       <li><a href="index.html">Início</a></li>
       <li><a href="sobre.html">Sobre</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
       <li><a href="contato.html">Contato</a></li>
     </ul>
   </nav>
 
   <script>
-    function toggleMenu(icon) {
+    function toggleMenu(button) {
       const menu = document.getElementById('menu');
-      icon.classList.toggle('active');
+      button.classList.toggle('active');
       menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
 
