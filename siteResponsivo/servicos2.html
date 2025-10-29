@@ -41,6 +41,12 @@
       position: relative;
     }
 
+    main.container {
+      max-width: 1000px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
     .menu {
       display: none;
       flex-direction: column;
@@ -137,6 +143,39 @@
       <li><a href="contato.html">Contato</a></li>
     </ul>
   </nav>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Como podemos ajudar?</h2>
+      <p class="lead">Oferecemos serviços focados em transformar ideias em produtos digitais funcionais e acessíveis.</p>
+    </section>
+
+    <section class="list">
+      <article class="service">
+        <h3>Desenvolvimento Front-end</h3>
+        <p>Criação de interfaces responsivas, componentes reutilizáveis e otimização para performance.</p>
+      </article>
+
+      <article class="service">
+        <h3>Design de UX/UI</h3>
+        <p>Pesquisas, prototipação e testes de usabilidade para garantir experiências agradáveis e eficientes.</p>
+      </article>
+
+      <article class="service">
+        <h3>Consultoria Técnica</h3>
+        <p>Arquitetura de projetos, revisão de código e orientação sobre melhores práticas.</p>
+      </article>
+
+      <article class="service">
+        <h3>Manutenção e Suporte</h3>
+        <p>Planos de manutenção, atualizações e suporte contínuo para manter seu site saudável.</p>
+      </article>
+    </section>
+
+    <footer>
+      <small>© 2025 — Site Responsivo. Entre em contato: <a href="mailto:contato@exemplo.com">contato@exemplo.com</a></small>
+    </footer>
+  </main>
 
   <script>
     function toggleMenu(icon) {
