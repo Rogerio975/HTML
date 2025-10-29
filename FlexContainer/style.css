@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.item {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    flex: 1;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Breakpoint móvel exemplo */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        height: auto; /* permite rolagem natural em telas pequenas */
+    }
+
+    .item {
+        flex: 0 1 100%; /* não crescer além do container, ocupar 100% da largura */
+        min-width: 120px; /* evita colapso do conteúdo */
+        margin: 8px 0;
+        padding: 16px;
+    }
+}
