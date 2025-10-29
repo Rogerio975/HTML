@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços — Site Responsivo</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #222222;
+      --accent: #0077cc;
+      --card: #f7f7f7;
+    }
+    body.dark{ --bg:#121212; --text:#eaeaea; --accent:#66a7e0; --card:#1e1e1e; }
+    body{ margin:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:var(--bg); color:var(--text); }
+    header{ background:var(--accent); color:#fff; padding:24px; text-align:center; }
+    .container{ max-width:1000px; margin:24px auto; padding:0 16px; }
+    .intro{ background:var(--card); padding:18px; border-radius:8px; }
+    h1{ margin:0 0 8px 0; }
+    p.lead{ margin:0; opacity:0.95; }
+    .list{ margin-top:18px; display:grid; gap:12px; }
+    .service{ background:var(--card); padding:16px; border-radius:8px; }
+    .service h3{ margin:0 0 6px 0; }
+    nav.top{ display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:transparent; }
+    nav.top a{ color:var(--text); text-decoration:none; margin-right:12px; }
+    .back{ font-weight:600; color:var(--accent); }
+    footer{ text-align:center; padding:20px; margin-top:26px; opacity:0.9; }
+    .theme-btn{ background:none; border:1px solid var(--accent); color:var(--accent); padding:8px 12px; border-radius:6px; cursor:pointer; }
+    @media(min-width:768px){ .list{ grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Nossos Serviços</h1>
+      <p style="margin-top:8px;">Soluções pensadas para web e experiência do usuário.</p>
+    </div>
+  </header>
+
+  <nav class="top container">
+    <div>
+      <a class="back" href="index.html">← Voltar para Início</a>
+      <a href="sobre.html" style="margin-left:12px; text-decoration:none; color:var(--text);">Sobre</a>
+    </div>
+    <div>
+      <button class="theme-btn" id="themeToggle">Alternar Tema</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Como podemos ajudar?</h2>
+      <p class="lead">Oferecemos serviços focados em transformar ideias em produtos digitais funcionais e acessíveis.</p>
+    </section>
+
+    <section class="list">
+      <article class="service">
+        <h3>Desenvolvimento Front-end</h3>
+        <p>Criação de interfaces responsivas, componentes reutilizáveis e otimização para performance.</p>
+      </article>
+
+      <article class="service">
+        <h3>Design de UX/UI</h3>
+        <p>Pesquisas, prototipação e testes de usabilidade para garantir experiências agradáveis e eficientes.</p>
+      </article>
+
+      <article class="service">
+        <h3>Consultoria Técnica</h3>
+        <p>Arquitetura de projetos, revisão de código e orientação sobre melhores práticas.</p>
+      </article>
+
+      <article class="service">
+        <h3>Manutenção e Suporte</h3>
+        <p>Planos de manutenção, atualizações e suporte contínuo para manter seu site saudável.</p>
+      </article>
+    </section>
+
+    <footer>
+      <small>© 2025 — Site Responsivo. Entre em contato: <a href="mailto:contato@exemplo.com">contato@exemplo.com</a></small>
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')) localStorage.setItem('theme','dark'); else localStorage.removeItem('theme');
+    });
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  </script>
+</body>
+</html>
