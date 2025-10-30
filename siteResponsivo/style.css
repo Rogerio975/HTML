@@ -37,6 +37,8 @@ main {
 
 .logo img {
   margin-left: auto;
+  height: 40px;
+  width: auto;
 }
 
 .menu-toggle {
