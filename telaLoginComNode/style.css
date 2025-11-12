@@ -37,7 +37,10 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-h1, h2 { margin: 0 0 1rem; }
+h1, h2 {
+    margin: 0 0 1rem;
+    text-align: center;
+}
 
 .input-group { margin-bottom: 1rem; }
 .input-group label { display: block; margin-bottom: 0.4rem; color: var(--muted); }
