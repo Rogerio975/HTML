@@ -33,10 +33,11 @@ h1 {
   font-size: 1.4rem;
   margin: 0 0 16px;
   letter-spacing: 0.2px;
+  text-align: center;
 }
 
 .form-group { margin-bottom: 12px; }
-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.9rem; }
+label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.9rem; text-align: center; }
 input[type="email"], input[type="password"], input[type="text"] {
   width: 100%;
   padding: 12px;
