@@ -96,3 +96,7 @@ h1, h2 {margin: 0 0 1rem; text-align: center;}
 .modal-actions { display: flex; gap: 0.6rem; margin-top: 0.6rem; }
 
 .success { color: var(--success); }
+
+@media (max-width: 480px) {
+  .container { padding: 1.5rem; }
+}
