@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Criar conta</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h1>Criar conta</h1>
+
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" autocomplete="new-password" required />
+    </div>
+
+    <button id="signupBtn">Cadastrar</button>
+    <div id="msg" class="error"></div>
+
+    <div class="link-row">
+      <a href="index.html">Já tenho conta</a>
+      <a href="forgot.html">Esqueci minha senha</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signupBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const msg = document.getElementById('msg');
+      msg.className = 'error'; msg.textContent = '';
+
+      if (!email || !password) { msg.textContent = 'Preencha e-mail e senha.'; return; }
+
+      try {
+        const res = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro no cadastro');
+
+        msg.className = 'success';
+        msg.textContent = 'Conta criada! Você já pode entrar.';
+        setTimeout(() => window.location.href = '/index.html', 800);
+      } catch (err) {
+        msg.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>
