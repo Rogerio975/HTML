@@ -4,10 +4,50 @@ body {
   padding: 20px;
 }
 
-input, button {
+h2, h3 {
+  color: #333;
+}
+
+input {
   margin: 5px 0;
   padding: 8px;
   width: 100%;
+}
+
+button {
+  margin-top: 8px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Botões principais */
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-edit {
+  background: #ffc107;
+  color: black;
+}
+
+.btn-view {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
 }
 
 .card {
@@ -16,7 +56,7 @@ input, button {
   max-width: 350px;
   border-radius: 10px;
   box-shadow: 0 0 5px #aaa;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .hidden {
@@ -24,6 +64,7 @@ input, button {
 }
 
 #lista {
+  margin-top: 20px;
   max-width: 500px;
 }
 
@@ -41,22 +82,6 @@ input, button {
   margin-top: 8px;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 5px;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-.btn-edit { background: #ffc107; }
-.btn-view { background: #17a2b8; }
-.btn-delete { background: #dc3545; }
-
 /* Modal */
 .modal {
   position: fixed;
@@ -64,7 +89,7 @@ button:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;

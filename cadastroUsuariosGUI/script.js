@@ -1,27 +1,30 @@
 let pessoas = [];
-let total = 0;
-let atual = 0;
 let editIndex = null;
 
-function iniciarCadastro() {
-  total = Number(document.getElementById("qtd").value);
+// Exibir formulário de cadastro
+document.getElementById("btnCadastrar").addEventListener("click", () => {
+  abrirFormulario();
+});
 
-  if (isNaN(total) || total <= 0) {
-    alert("Digite uma quantidade válida!");
-    return;
-  }
+function abrirFormulario() {
+  document.getElementById("form-container").classList.remove("hidden");
+  document.getElementById("tituloForm").innerText = "Cadastrar Usuário";
 
-  document.getElementById("form-qtd").classList.add("hidden");
-  document.getElementById("form-pessoas").classList.remove("hidden");
+  document.getElementById("nome").value = "";
+  document.getElementById("idade").value = "";
+  document.getElementById("profissao").value = "";
 
-  atual = 1;
-  document.getElementById("numAtual").innerText = atual + " de " + total;
+  editIndex = null;
+}
+
+function cancelar() {
+  document.getElementById("form-container").classList.add("hidden");
 }
 
 function salvarPessoa() {
-  let nome = document.getElementById("nome").value;
-  let idade = document.getElementById("idade").value;
-  let profissao = document.getElementById("profissao").value;
+  const nome = document.getElementById("nome").value;
+  const idade = document.getElementById("idade").value;
+  const profissao = document.getElementById("profissao").value;
 
   if (!nome || !idade || !profissao) {
     alert("Preencha todos os campos!");
@@ -36,18 +39,7 @@ function salvarPessoa() {
   }
 
   atualizarLista();
-
-  document.getElementById("nome").value = "";
-  document.getElementById("idade").value = "";
-  document.getElementById("profissao").value = "";
-
-  atual++;
-
-  if (atual <= total) {
-    document.getElementById("numAtual").innerText = atual + " de " + total;
-  } else {
-    document.getElementById("form-pessoas").classList.add("hidden");
-  }
+  cancelar();
 }
 
 function atualizarLista() {
@@ -57,7 +49,7 @@ function atualizarLista() {
   pessoas.forEach((p, i) => {
     div.innerHTML += `
       <div class="pessoa">
-        <strong>${i + 1}. ${p.nome}</strong><br>
+        <strong>${p.nome}</strong><br>
         Idade: ${p.idade}<br>
         Profissão: ${p.profissao}
 
@@ -73,10 +65,12 @@ function atualizarLista() {
 
 function visualizar(i) {
   const p = pessoas[i];
-  document.getElementById("modalInfo").innerHTML =
-    `<strong>Nome:</strong> ${p.nome}<br>
-     <strong>Idade:</strong> ${p.idade}<br>
-     <strong>Profissão:</strong> ${p.profissao}`;
+
+  document.getElementById("modalInfo").innerHTML = `
+    <strong>Nome:</strong> ${p.nome}<br>
+    <strong>Idade:</strong> ${p.idade}<br>
+    <strong>Profissão:</strong> ${p.profissao}
+  `;
 
   document.getElementById("modal").classList.remove("hidden");
 }
@@ -87,17 +81,19 @@ function fecharModal() {
 
 function editar(i) {
   const p = pessoas[i];
-  document.getElementById("form-pessoas").classList.remove("hidden");
+
+  editIndex = i;
+
+  document.getElementById("form-container").classList.remove("hidden");
+  document.getElementById("tituloForm").innerText = "Editar Usuário";
 
   document.getElementById("nome").value = p.nome;
   document.getElementById("idade").value = p.idade;
   document.getElementById("profissao").value = p.profissao;
-
-  editIndex = i;
 }
 
 function excluir(i) {
-  if (confirm("Deseja realmente excluir esta pessoa?")) {
+  if (confirm("Deseja realmente excluir?")) {
     pessoas.splice(i, 1);
     atualizarLista();
   }
