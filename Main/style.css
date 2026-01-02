@@ -4,3 +4,17 @@
     box-sizing: border-box;
     background-color: rgb(214, 157, 157);
 }
+
+.artigo1 {
+    background-color: rgb(179, 109, 109);
+    color: #000;
+    float: left;
+    margin-right: 0;
+}
+
+.artigo2 {
+    background-color: rgb(179, 134, 109);
+    color: #000;
+    float: right;
+    margin-left: 0;
+}
