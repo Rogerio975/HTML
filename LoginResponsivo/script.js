@@ -42,9 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
   showBtn.addEventListener('click', function () {
     const showing = password.type === 'text';
     password.type = showing ? 'password' : 'text';
-    showBtn.textContent = showing ? 'Mostrar' : 'Ocultar';
     showBtn.setAttribute('aria-pressed', String(!showing));
+    const icon = showBtn.querySelector('.eye-icon');
+    icon.style.opacity = showing ? '0.5' : '1';
   });
+  showBtn.querySelector('.eye-icon').style.opacity = '0.5';
 
   form.addEventListener('submit', function (e) {
     const pw = password.value || '';

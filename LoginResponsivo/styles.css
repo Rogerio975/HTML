@@ -19,7 +19,8 @@ input { width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px soli
 .password-row { margin-bottom: 0.5rem; }
 .pw-input { display: flex; gap: 0.5rem; align-items: center; }
 .pw-input input { flex: 1; margin-bottom: 0; }
-.show-pw { padding: 0.5rem 0.6rem; border: 1px solid #e6ecf8; background: #fff; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+.show-pw { padding: 0.5rem; border: 1px solid #e6ecf8; background: #fff; border-radius: 8px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; width: 2.5rem; color: #1f2937; }
+.eye-icon { width: 1.2rem; height: 1.2rem; }
 .feedback { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; min-height: 1.1em; }
 .strength { height: 8px; background: #eef2ff; border-radius: 6px; overflow: hidden; margin-top: 0.5rem; }
 .strength-bar { height: 100%; width: 0%; transition: width 160ms ease; background: linear-gradient(90deg,#ff7a7a,#ffd36e,#8be78b); }

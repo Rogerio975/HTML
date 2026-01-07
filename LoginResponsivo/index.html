@@ -18,7 +18,12 @@
       <div class="password-row">
         <div class="pw-input">
           <input id="password" name="password" type="password" placeholder="Sua senha" required>
-          <button type="button" class="show-pw" aria-pressed="false" aria-label="Mostrar senha">Mostrar</button>
+          <button type="button" class="show-pw" aria-pressed="false" aria-label="Mostrar senha">
+            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
         </div>
 
         <div id="passwordFeedback" class="feedback" aria-live="polite"></div>
