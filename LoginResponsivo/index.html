@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <form class="login-card" action="#" method="post" aria-labelledby="title">
+      <h1 id="title">Entrar</h1>
+
+      <label for="login">Login</label>
+      <input id="login" name="login" type="text" placeholder="Digite seu usuário ou e-mail" required>
+
+      <label for="password">Senha</label>
+      <div class="password-row">
+        <div class="pw-input">
+          <input id="password" name="password" type="password" placeholder="Sua senha" required>
+          <button type="button" class="show-pw" aria-pressed="false" aria-label="Mostrar senha">Mostrar</button>
+        </div>
+
+        <div id="passwordFeedback" class="feedback" aria-live="polite"></div>
+        <div class="strength" aria-hidden="true">
+          <div id="passwordStrength" class="strength-bar"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Entrar</button>
+
+      <div class="links">
+        <a href="#">Esqueci a senha</a>
+        <a href="#">Solicitar acesso</a>
+      </div>
+    </form>
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
