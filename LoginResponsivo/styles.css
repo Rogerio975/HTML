@@ -11,7 +11,9 @@ html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystem
 .login-card h1 { margin: 0 0 1rem; font-size: 1.4rem; text-align: center; }
 label { display: block; font-size: 0.9rem; margin: 0.5rem 0 0.25rem; }
 input { width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e6ecf8; background: #fbfdff; font-size: 1rem; margin-bottom: 0.5rem; }
-.btn { width: 100%; padding: 0.85rem; border: 0; border-radius: 8px; background: var(--accent); color: #ffffff; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+.btn { width: 100%; padding: 0.85rem; border: 0; border-radius: 8px; background: var(--accent); color: #ffffff; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
+.btn:hover, .btn:focus { background-color: #1a78e6; box-shadow: 0 6px 18px rgba(30,144,255,0.18); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(30,144,255,0.14); }
 .links { display: flex; justify-content: space-between; margin-top: 1rem; font-size: 0.9rem; }
 .links a { color: var(--accent); text-decoration: none; }
 @media (max-width: 420px) { .login-card { padding: 1.25rem; border-radius: 10px; } .login-card h1 { font-size: 1.2rem; } }
