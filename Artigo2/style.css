@@ -11,11 +11,13 @@ h1 {
 .artigos {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
 article {
-    flex: 1;
+    flex: 0 1 calc((100% - 60px) / 4);
+    max-width: calc((100% - 60px) / 4);
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -26,8 +28,23 @@ article h2 {
     margin-top: 0;
 }
 
-@media (max-width: 810px) {
-    .artigos {
-        flex-direction: column;
+@media (max-width: 1000px) {
+    article {
+        flex: 0 1 calc((100% - 40px) / 3);
+        max-width: calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width: 800px) {
+    article {
+        flex: 0 1 calc((100% - 20px) / 2);
+        max-width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 480px) {
+    article {
+        flex: 0 1 100%;
+        max-width: 100%;
     }
 }
