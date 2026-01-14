@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplos de Promises no JavaScript</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .example {
+      margin-bottom: 30px;
+      border-left: 5px solid #667eea;
+      padding-left: 20px;
+    }
+
+    .example h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .example p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .code-block {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .console {
+      background: #1e1e1e;
+      color: #00ff00;
+      border: 2px solid #667eea;
+      border-radius: 5px;
+      padding: 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95em;
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.6;
+    }
+
+    .console-header {
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #667eea;
+    }
+
+    .success {
+      color: #00ff00;
+    }
+
+    .error {
+      color: #ff6b6b;
+    }
+
+    .info {
+      color: #64b5f6;
+    }
+
+    .footer {
+      background: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .divider {
+      border-top: 2px solid #667eea;
+      margin: 30px 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 Exemplos de Promises</h1>
+      <p>JavaScript - Programação Assíncrona</p>
+    </div>
+
+    <div class="content">
+      <!-- Exemplo 1 -->
+      <div class="example">
+        <h2>1️⃣ Promise Simples</h2>
+        <p>Uma Promise que resolve com sucesso após 1 segundo:</p>
+        <div class="code-block">const minhaPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Operação completada!');
+  }, 1000);
+});
+
+minhaPromise.then((resultado) => {
+  console.log(resultado);
+});</div>
+        <button onclick="exemplo1()">Executar Exemplo 1</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 2 -->
+      <div class="example">
+        <h2>2️⃣ Promise com Tratamento de Erro</h2>
+        <p>Uma Promise que é rejeitada e captura o erro com catch():</p>
+        <div class="code-block">const promiseComErro = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('Algo deu errado!');
+  }, 1000);
+});
+
+promiseComErro
+  .then((resultado) => { /* ... */ })
+  .catch((erro) => {
+    console.log('Erro:', erro);
+  });</div>
+        <button onclick="exemplo2()">Executar Exemplo 2</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 3 -->
+      <div class="example">
+        <h2>3️⃣ Promise Chain (Encadeamento)</h2>
+        <p>Múltiplas Promises encadeadas com .then():</p>
+        <div class="code-block">promise1
+  .then((resultado) => {
+    console.log('Passo 1:', resultado);
+    return promise2;
+  })
+  .then((resultado) => {
+    console.log('Passo 2:', resultado);
+  });</div>
+        <button onclick="exemplo3()">Executar Exemplo 3</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 4 -->
+      <div class="example">
+        <h2>4️⃣ Promise.all()</h2>
+        <p>Aguardar a resolução de múltiplas Promises simultaneamente:</p>
+        <div class="code-block">const promise1 = Promise.resolve('Primeira');
+const promise2 = Promise.resolve('Segunda');
+const promise3 = Promise.resolve('Terceira');
+
+Promise.all([promise1, promise2, promise3])
+  .then((resultados) => {
+    console.log(resultados); // ['Primeira', 'Segunda', 'Terceira']
+  });</div>
+        <button onclick="exemplo4()">Executar Exemplo 4</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 5 -->
+      <div class="example">
+        <h2>5️⃣ Promise.race()</h2>
+        <p>Retorna o resultado da primeira Promise que resolver:</p>
+        <div class="code-block">const rápida = new Promise((resolve) => 
+  setTimeout(() => resolve('Rápida'), 100)
+);
+const lenta = new Promise((resolve) => 
+  setTimeout(() => resolve('Lenta'), 5000)
+);
+
+Promise.race([rápida, lenta])
+  .then((resultado) => {
+    console.log(resultado); // 'Rápida'
+  });</div>
+        <button onclick="exemplo5()">Executar Exemplo 5</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 6 -->
+      <div class="example">
+        <h2>6️⃣ Async/Await (Sintaxe Moderna)</h2>
+        <p>Forma mais legível de trabalhar com Promises:</p>
+        <div class="code-block">async function buscarDados() {
+  try {
+    const resultado = await minhaPromise;
+    console.log(resultado);
+  } catch (erro) {
+    console.log('Erro:', erro);
+  }
+}
+
+buscarDados();</div>
+        <button onclick="exemplo6()">Executar Exemplo 6</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 7 -->
+      <div class="example">
+        <h2>7️⃣ Async/Await com Promise.all()</h2>
+        <p>Combinar múltiplas Promises com async/await:</p>
+        <div class="code-block">async function buscarTodos() {
+  try {
+    const resultados = await Promise.all([
+      promise1,
+      promise2,
+      promise3
+    ]);
+    console.log(resultados);
+  } catch (erro) {
+    console.log('Erro:', erro);
+  }
+}
+
+buscarTodos();</div>
+        <button onclick="exemplo7()">Executar Exemplo 7</button>
+      </div>
+
+      <hr>
+
+      <!-- Exemplo 8 -->
+      <div class="example">
+        <h2>8️⃣ Simulando Requisição HTTP</h2>
+        <p>Padrão comum de uso de Promises com APIs:</p>
+        <div class="code-block">function buscarDadosAPI(url) {
+  return new Promise((resolve, reject) => {
+    // Simular requisição HTTP
+    setTimeout(() => {
+      const sucesso = Math.random() > 0.5;
+      if (sucesso) {
+        resolve({ id: 1, nome: 'João' });
+      } else {
+        reject('Erro ao buscar dados');
+      }
+    }, 1000);
+  });
+}
+
+buscarDadosAPI('/api/usuarios')
+  .then((dados) => console.log(dados))
+  .catch((erro) => console.log(erro));</div>
+        <button onclick="exemplo8()">Executar Exemplo 8</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Console Output -->
+      <h2 style="color: #333; margin-bottom: 15px;">📊 Saída do Console:</h2>
+      <div class="button-group">
+        <button onclick="limparConsole()">🗑️ Limpar Console</button>
+        <button onclick="executarTodos()">▶️ Executar Todos os Exemplos</button>
+      </div>
+      <div class="console">
+        <div class="console-header">Saída do console:</div>
+        <div id="output"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>💡 Dica: Abra o DevTools (F12) para ver mais detalhes da execução</p>
+      <p>📚 Estude o código-fonte em exemplo-promises.js</p>
+    </div>
+  </div>
+
+  <script>
+    // Redirect console.log para exibir na página
+    const output = document.getElementById('output');
+    const originalLog = console.log;
+    
+    console.log = function(...args) {
+      originalLog(...args);
+      
+      const message = args.map(arg => {
+        if (typeof arg === 'object') {
+          return JSON.stringify(arg, null, 2);
+        }
+        return String(arg);
+      }).join(' ');
+      
+      const timestamp = new Date().toLocaleTimeString('pt-BR');
+      const div = document.createElement('div');
+      div.textContent = `[${timestamp}] ${message}`;
+      output.appendChild(div);
+      
+      // Auto scroll
+      output.scrollTop = output.scrollHeight;
+    };
+
+    function limparConsole() {
+      output.innerHTML = '';
+    }
+
+    function exemplo1() {
+      console.log('\n=== Exemplo 1: Promise Simples ===');
+      const minhaPromise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('✓ Operação completada com sucesso!');
+        }, 1000);
+      });
+
+      minhaPromise.then((resultado) => {
+        console.log(resultado);
+      });
+    }
+
+    function exemplo2() {
+      console.log('\n=== Exemplo 2: Promise com Erro ===');
+      const promiseComErro = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('✗ Algo deu errado!');
+        }, 1000);
+      });
+
+      promiseComErro
+        .catch((erro) => {
+          console.log('Erro capturado:', erro);
+        });
+    }
+
+    function exemplo3() {
+      console.log('\n=== Exemplo 3: Promise Chain ===');
+      
+      function tarefa1() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log('✓ Tarefa 1 completa');
+            resolve('Dados da tarefa 1');
+          }, 500);
+        });
+      }
+
+      function tarefa2(dados) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log('✓ Tarefa 2 completa. Dados recebidos:', dados);
+            resolve('Dados da tarefa 2');
+          }, 500);
+        });
+      }
+
+      tarefa1()
+        .then((resultado) => {
+          console.log('Resultado 1:', resultado);
+          return tarefa2(resultado);
+        })
+        .then((resultado) => {
+          console.log('Resultado 2:', resultado);
+        });
+    }
+
+    function exemplo4() {
+      console.log('\n=== Exemplo 4: Promise.all() ===');
+      
+      const p1 = new Promise((resolve) => setTimeout(() => resolve('Primeira'), 800));
+      const p2 = new Promise((resolve) => setTimeout(() => resolve('Segunda'), 600));
+      const p3 = new Promise((resolve) => setTimeout(() => resolve('Terceira'), 1000));
+
+      console.log('Iniciando 3 Promises em paralelo...');
+      
+      Promise.all([p1, p2, p3])
+        .then((resultados) => {
+          console.log('✓ Todas resolvidas:', resultados);
+        });
+    }
+
+    function exemplo5() {
+      console.log('\n=== Exemplo 5: Promise.race() ===');
+      
+      const rápida = new Promise((resolve) => setTimeout(() => resolve('Rápida'), 300));
+      const lenta = new Promise((resolve) => setTimeout(() => resolve('Lenta'), 2000));
+
+      console.log('Iniciando race entre 2 Promises...');
+      
+      Promise.race([rápida, lenta])
+        .then((resultado) => {
+          console.log('✓ Primeira a resolver:', resultado);
+        });
+    }
+
+    function exemplo6() {
+      console.log('\n=== Exemplo 6: Async/Await ===');
+      
+      async function executar() {
+        try {
+          console.log('Iniciando operação assíncrona...');
+          
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          console.log('✓ Operação completa com async/await');
+          
+          return 'Sucesso!';
+        } catch (erro) {
+          console.log('✗ Erro:', erro);
+        }
+      }
+
+      executar().then((resultado) => {
+        console.log('Resultado:', resultado);
+      });
+    }
+
+    function exemplo7() {
+      console.log('\n=== Exemplo 7: Async/Await com Promise.all() ===');
+      
+      async function buscarMultiplos() {
+        try {
+          const p1 = new Promise((resolve) => setTimeout(() => resolve('Dados 1'), 600));
+          const p2 = new Promise((resolve) => setTimeout(() => resolve('Dados 2'), 800));
+          const p3 = new Promise((resolve) => setTimeout(() => resolve('Dados 3'), 700));
+
+          console.log('Aguardando 3 Promises com async/await...');
+          const [resultado1, resultado2, resultado3] = await Promise.all([p1, p2, p3]);
+          
+          console.log('✓ Todos os dados chegaram:');
+          console.log('  -', resultado1);
+          console.log('  -', resultado2);
+          console.log('  -', resultado3);
+        } catch (erro) {
+          console.log('✗ Erro:', erro);
+        }
+      }
+
+      buscarMultiplos();
+    }
+
+    function exemplo8() {
+      console.log('\n=== Exemplo 8: Simulando Requisição HTTP ===');
+      
+      function buscarDadosAPI(endpoint) {
+        return new Promise((resolve, reject) => {
+          console.log(`Buscando dados de: ${endpoint}`);
+          
+          setTimeout(() => {
+            const sucesso = Math.random() > 0.3;
+            if (sucesso) {
+              resolve({
+                id: 1,
+                nome: 'João Silva',
+                email: 'joao@example.com',
+                status: 'ativo'
+              });
+            } else {
+              reject('Erro 500: Servidor indisponível');
+            }
+          }, 1500);
+        });
+      }
+
+      buscarDadosAPI('/api/usuarios/1')
+        .then((dados) => {
+          console.log('✓ Dados recebidos:');
+          console.log(JSON.stringify(dados, null, 2));
+        })
+        .catch((erro) => {
+          console.log('✗ Erro na requisição:', erro);
+        });
+    }
+
+    function executarTodos() {
+      limparConsole();
+      console.log('🚀 Iniciando execução de todos os exemplos...\n');
+      
+      setTimeout(() => exemplo1(), 100);
+      setTimeout(() => exemplo2(), 2500);
+      setTimeout(() => exemplo3(), 4500);
+      setTimeout(() => exemplo4(), 7000);
+      setTimeout(() => exemplo5(), 9500);
+      setTimeout(() => exemplo6(), 12000);
+      setTimeout(() => exemplo7(), 14500);
+      setTimeout(() => exemplo8(), 17000);
+    }
+
+    // Log inicial
+    console.log('💡 Bem-vindo aos Exemplos de Promises!');
+    console.log('Clique em um dos botões para executar um exemplo.\n');
+  </script>
+</body>
+</html>
