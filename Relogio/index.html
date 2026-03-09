@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio Digital</title>
+</head>
+<body>
+    <div class="clock-container">
+    <div id="data" class="date-display">--/--/----</div>
+    <div id="relogio" class="time-display">00:00:00</div>
+    </div>
+
+<style>
+  /* Estilização Visual */
+  body {
+    background-color: #0f0f0f; /* Fundo quase preto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #00ff88; /* Verde Neon */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .clock-container {
+    text-align: center;
+    border: 2px solid #00ff88;
+    padding: 5vw;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .date-display {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+
+  .time-display {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  function atualizarRelogio() {
+    const agora = new Date();
+    
+    // Formatação da Data
+    const dataOpcoes = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    document.getElementById('data').textContent = agora.toLocaleDateString('pt-BR', dataOpcoes);
+    
+    // Formatação da Hora
+    document.getElementById('relogio').textContent = agora.toLocaleTimeString('pt-BR');
+  }
+
+  // Atualiza a cada segundo
+  setInterval(atualizarRelogio, 1000);
+  atualizarRelogio();
+</script>
+</body>
+</html>
