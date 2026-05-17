@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recuperar senha</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h1>Recuperar senha</h1>
+
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="email" required />
+    </div>
+
+    <button id="sendCodeBtn">Enviar código</button>
+    <div id="msg" class="error"></div>
+
+    <hr style="border-color:#1f2937; margin:16px 0;" />
+
+    <div class="form-group">
+      <label for="code">Código recebido</label>
+      <input id="code" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="newPassword">Nova senha</label>
+      <input id="newPassword" type="password" autocomplete="new-password" />
+    </div>
+    <button id="resetBtn">Alterar senha</button>
+    <div id="msg2" class="error"></div>
+
+    <div class="link-row">
+      <a href="index.html">Voltar ao login</a>
+      <a href="signup.html">Criar conta</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('sendCodeBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('msg');
+      msg.className = 'error'; msg.textContent = '';
+      if (!email) { msg.textContent = 'Informe seu e-mail.'; return; }
+      try {
+        const res = await fetch('/api/forgot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro ao solicitar código');
+        msg.className = 'success'; msg.textContent = 'Código enviado (demo: veja o console do servidor).';
+      } catch (err) { msg.textContent = err.message; }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const code = document.getElementById('code').value.trim();
+      const newPassword = document.getElementById('newPassword').value;
+      const msg2 = document.getElementById('msg2');
+      msg2.className = 'error'; msg2.textContent = '';
+
+      if (!email || !code || !newPassword) { msg2.textContent = 'Preencha todos os campos.'; return; }
+
+      try {
+        const res = await fetch('/api/reset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, code, newPassword })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro ao alterar senha');
+        msg2.className = 'success'; msg2.textContent = 'Senha alterada! Você já pode entrar.';
+      } catch (err) {
+        msg2.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>

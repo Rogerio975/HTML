@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Entrar</h1>
+
+      <form id="loginForm" novalidate>
+        <div class="input-group">
+          <label for="username">Usuário ou e-mail</label>
+          <input type="text" id="username" name="username" autocomplete="username" required />
+          <small class="error" id="usernameError"></small>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" autocomplete="current-password" required />
+            <button type="button" class="toggle-password" aria-label="Mostrar/ocultar senha">👁️</button>
+          </div>
+          <small class="error" id="passwordError"></small>
+        </div>
+
+        <div class="options">
+          <label class="checkbox">
+            <input type="checkbox" id="rememberPassword" /> Salvar senha
+          </label>
+          <a href="#" id="forgotPasswordLink">Recuperar senha</a>
+        </div>
+
+        <button type="submit" class="primary">Entrar</button>
+
+        <div class="divider"><span>ou</span></div>
+
+        <button type="button" class="secondary" id="createAccountBtn">Criar conta</button>
+
+        <div class="feedback" id="formFeedback" role="alert"></div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modal Recuperar Senha -->
+  <div class="modal" id="forgotModal" aria-hidden="true" role="dialog" aria-labelledby="forgotTitle">
+    <div class="modal-content">
+      <h2 id="forgotTitle">Recuperar senha</h2>
+      <p>Informe seu e-mail para receber instruções de recuperação.</p>
+      <div class="input-group">
+        <label for="recoverEmail">E-mail</label>
+        <input type="email" id="recoverEmail" autocomplete="email" />
+        <small class="error" id="recoverEmailError"></small>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary" id="cancelForgot">Cancelar</button>
+        <button class="primary" id="sendRecover">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Criar Conta -->
+  <div class="modal" id="createModal" aria-hidden="true" role="dialog" aria-labelledby="createTitle">
+    <div class="modal-content">
+      <h2 id="createTitle">Criar conta</h2>
+      <div class="input-group">
+        <label for="newName">Nome</label>
+        <input type="text" id="newName" autocomplete="name" />
+        <small class="error" id="newNameError"></small>
+      </div>
+      <div class="input-group">
+        <label for="newEmail">E-mail</label>
+        <input type="email" id="newEmail" autocomplete="email" />
+        <small class="error" id="newEmailError"></small>
+      </div>
+      <div class="input-group">
+        <label for="newPassword">Senha</label>
+        <div class="password-wrapper">
+          <input type="password" id="newPassword" autocomplete="new-password" />
+          <button type="button" class="toggle-password" data-target="newPassword" aria-label="Mostrar/ocultar senha">👁️</button>
+        </div>
+        <small class="hint">Mínimo 8 caracteres, incluindo letra e número.</small>
+        <small class="error" id="newPasswordError"></small>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary" id="cancelCreate">Cancelar</button>
+        <button class="primary" id="confirmCreate">Criar</button>
+      </div>
+      <div class="feedback" id="createFeedback" role="alert"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
