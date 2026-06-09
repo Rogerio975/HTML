@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS Store — Tecnologia & Soluções</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #0D1B2A;
+      --steel:   #1E3A5F;
+      --sky:     #2E86C1;
+      --silver:  #F0F4F8;
+      --mid:     #8A9BB0;
+      --accent:  #E8A020;
+      --white:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      margin: 0;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy);
+      color: var(--mid);
+      font-size: .78rem;
+      letter-spacing: .04em;
+      padding: .4rem 0;
+    }
+    .topbar a { color: var(--mid); text-decoration: none; }
+    .topbar a:hover { color: var(--white); }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--white);
+      border-bottom: 2px solid var(--silver);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      color: var(--navy) !important;
+      letter-spacing: -.02em;
+    }
+    .navbar-brand span { color: var(--sky); }
+    .nav-link {
+      color: var(--navy) !important;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      padding: .4rem .9rem !important;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--sky) !important; }
+    .nav-link.active { color: var(--sky) !important; border-bottom: 2px solid var(--sky); }
+
+    .btn-cart {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: .85rem;
+      font-weight: 600;
+      padding: .45rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: background .2s;
+    }
+    .btn-cart:hover { background: var(--sky); color: var(--white); }
+    .cart-badge {
+      background: var(--accent);
+      color: var(--navy);
+      font-size: .7rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 18px; height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 60%, #1a4a6e 100%);
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-eyebrow {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      color: var(--mid);
+      font-size: 1rem;
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+    .btn-primary-custom {
+      background: var(--sky);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: .9rem;
+      padding: .75rem 1.8rem;
+      transition: background .2s, transform .15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary-custom:hover {
+      background: #1a6fa3;
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-custom {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: .9rem;
+      padding: .75rem 1.8rem;
+      transition: border-color .2s, background .2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline-custom:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.07);
+      color: var(--white);
+    }
+    .hero-stat {
+      color: var(--white);
+      border-left: 2px solid rgba(255,255,255,.15);
+      padding-left: 1.2rem;
+    }
+    .hero-stat .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .hero-stat .lbl {
+      font-size: .75rem;
+      color: var(--mid);
+      letter-spacing: .05em;
+    }
+
+    /* ── BANNER STRIP ── */
+    .strip {
+      background: var(--sky);
+      color: var(--white);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      padding: .65rem 0;
+      text-align: center;
+    }
+    .strip span { margin: 0 2rem; opacity: .85; }
+    .strip i { color: var(--accent); margin-right: .35rem; }
+
+    /* ── CATEGORY TABS ── */
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: .4rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0;
+    }
+
+    .cat-pills .nav-link {
+      background: var(--silver);
+      color: var(--navy) !important;
+      border-radius: 30px;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: .4rem 1.1rem !important;
+      border: none;
+      transition: background .2s, color .2s;
+    }
+    .cat-pills .nav-link.active,
+    .cat-pills .nav-link:hover {
+      background: var(--navy);
+      color: var(--white) !important;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      border: 1.5px solid #E2E8F0;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      background: var(--white);
+      height: 100%;
+    }
+    .product-card:hover {
+      border-color: var(--sky);
+      box-shadow: 0 8px 32px rgba(46,134,193,.12);
+      transform: translateY(-4px);
+    }
+    .product-img {
+      background: var(--silver);
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .badge-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      border-radius: 4px;
+      padding: .25rem .55rem;
+    }
+    .badge-novo { background: var(--sky); color: var(--white); }
+    .badge-off  { background: var(--accent); color: var(--navy); }
+    .badge-dest { background: var(--navy); color: var(--white); }
+
+    .product-body { padding: 1.1rem 1.2rem 1.3rem; }
+    .product-cat {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--sky);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+    .product-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .3rem;
+      line-height: 1.3;
+    }
+    .product-desc {
+      font-size: .8rem;
+      color: var(--mid);
+      margin-bottom: .8rem;
+      line-height: 1.5;
+    }
+    .stars { color: var(--accent); font-size: .8rem; }
+    .reviews { font-size: .75rem; color: var(--mid); }
+    .price-old {
+      font-size: .8rem;
+      color: var(--mid);
+      text-decoration: line-through;
+      margin-right: .4rem;
+    }
+    .price-new {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .btn-add {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: .5rem 1rem;
+      width: 100%;
+      margin-top: .9rem;
+      transition: background .2s;
+      cursor: pointer;
+    }
+    .btn-add:hover { background: var(--sky); }
+
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      background: linear-gradient(100deg, var(--navy) 0%, var(--steel) 100%);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-banner::after {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(46,134,193,.15);
+    }
+    .promo-badge {
+      background: var(--accent);
+      color: var(--navy);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .7rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: .8rem;
+    }
+    .promo-banner h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .promo-banner p { color: var(--mid); font-size: .88rem; margin-bottom: 1.2rem; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--silver);
+      border-top: 1.5px solid #E2E8F0;
+      border-bottom: 1.5px solid #E2E8F0;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: 1.5rem .5rem;
+    }
+    .trust-icon {
+      width: 42px; height: 42px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .trust-item h6 {
+      font-weight: 700;
+      font-size: .88rem;
+      color: var(--navy);
+      margin-bottom: .1rem;
+    }
+    .trust-item p {
+      font-size: .75rem;
+      color: var(--mid);
+      margin: 0;
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--navy);
+      padding: 3.5rem 0;
+    }
+    .newsletter h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+    .newsletter p { color: var(--mid); font-size: .9rem; margin: 0; }
+    .nl-input {
+      border: 1.5px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      color: var(--white);
+      border-radius: 6px 0 0 6px;
+      padding: .65rem 1rem;
+      font-size: .88rem;
+      width: 100%;
+      outline: none;
+    }
+    .nl-input::placeholder { color: var(--mid); }
+    .nl-input:focus { border-color: var(--sky); background: rgba(255,255,255,.1); }
+    .nl-btn {
+      background: var(--sky);
+      color: var(--white);
+      border: none;
+      border-radius: 0 6px 6px 0;
+      font-weight: 700;
+      font-size: .85rem;
+      padding: .65rem 1.4rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .nl-btn:hover { background: #1a6fa3; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #07111C;
+      color: var(--mid);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .footer-brand span { color: var(--sky); }
+    footer h6 {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    footer a {
+      color: var(--mid);
+      text-decoration: none;
+      font-size: .84rem;
+      display: block;
+      margin-bottom: .45rem;
+      transition: color .2s;
+    }
+    footer a:hover { color: var(--sky); }
+    .footer-divider { border-color: rgba(255,255,255,.08); margin: 2rem 0 1.2rem; }
+    .footer-bottom { font-size: .78rem; }
+    .social-icon {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: border-color .2s, color .2s;
+      margin-right: .35rem;
+    }
+    .social-icon:hover { border-color: var(--sky); color: var(--sky); }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <span><i class="bi bi-telephone me-1"></i> +55 (11) 9 8765-4321 &nbsp;|&nbsp; <a href="#">suporte@nexusstore.com.br</a></span>
+    <span class="d-none d-md-inline">Frete grátis acima de R$ 299 &nbsp;·&nbsp; Parcelamento em até 12x</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">NEXUS<span>.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Produtos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Soluções</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Empresas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Suporte</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <a href="#" class="text-navy fs-5"><i class="bi bi-search" style="color:var(--navy)"></i></a>
+        <a href="#" class="text-navy fs-5"><i class="bi bi-person" style="color:var(--navy)"></i></a>
+        <button class="btn-cart">
+          <i class="bi bi-bag"></i> Carrinho <span class="cart-badge">3</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container py-5 position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="hero-eyebrow">Tecnologia para o seu negócio</div>
+        <h1>Equipamentos que <em>impulsionam</em> resultados</h1>
+        <p>Hardware corporativo, softwares empresariais e periféricos de alta performance. Soluções completas para equipes que exigem o melhor.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#produtos" class="btn-primary-custom">Ver catálogo <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#" class="btn-outline-custom">Falar com consultor</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="d-flex justify-content-center justify-content-lg-end gap-4 flex-wrap">
+          <div class="hero-stat">
+            <div class="num">12k+</div>
+            <div class="lbl">Clientes ativos</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">98%</div>
+            <div class="lbl">Satisfação</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">24h</div>
+            <div class="lbl">Suporte técnico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span><i class="bi bi-truck"></i>Frete Grátis acima de R$299</span>
+  <span><i class="bi bi-shield-check"></i>Garantia Estendida</span>
+  <span><i class="bi bi-credit-card"></i>12x sem juros</span>
+  <span><i class="bi bi-headset"></i>Suporte 24/7</span>
+</div>
+
+<!-- PRODUTOS -->
+<section class="py-5" id="produtos">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-4 gap-3">
+      <div>
+        <div class="section-label">Catálogo</div>
+        <h2 class="section-title">Produtos em destaque</h2>
+      </div>
+      <ul class="nav cat-pills gap-2 flex-wrap">
+        <li class="nav-item"><a class="nav-link active" href="#">Todos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Notebooks</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Servidores</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Periféricos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Software</a></li>
+      </ul>
+    </div>
+
+    <div class="row g-4">
+      <!-- Produto 1 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            💻
+            <span class="badge-tag badge-novo">NOVO</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Notebooks</div>
+            <div class="product-name">ProBook Elite X1 Gen 11</div>
+            <div class="product-desc">Intel Core i7-13ª, 32GB RAM, SSD 1TB, tela 14" IPS</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★★</div>
+              <span class="reviews">(128)</span>
+            </div>
+            <div>
+              <span class="price-old">R$ 8.999</span>
+              <span class="price-new">R$ 7.490</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 2 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            🖥️
+            <span class="badge-tag badge-dest">DESTAQUE</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Workstations</div>
+            <div class="product-name">WorkStation Z840 Pro</div>
+            <div class="product-desc">Xeon W5-2455X, 64GB ECC, NVIDIA RTX A4000</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★☆</div>
+              <span class="reviews">(54)</span>
+            </div>
+            <div>
+              <span class="price-new">R$ 24.990</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 3 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            🖨️
+            <span class="badge-tag badge-off">-20%</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Impressoras</div>
+            <div class="product-name">LaserJet MFP M578 Corp</div>
+            <div class="product-desc">Laser colorida A3, duplex automático, 45ppm, Wi-Fi 6</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★★</div>
+              <span class="reviews">(89)</span>
+            </div>
+            <div>
+              <span class="price-old">R$ 3.200</span>
+              <span class="price-new">R$ 2.560</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 4 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            🔌
+            <span class="badge-tag badge-novo">NOVO</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Servidores</div>
+            <div class="product-name">PowerEdge R750 Server</div>
+            <div class="product-desc">2x Xeon Silver 4314, 256GB RAM, RAID 10, 2U rack</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★★</div>
+              <span class="reviews">(31)</span>
+            </div>
+            <div>
+              <span class="price-new">R$ 49.800</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 5 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            🖱️
+            <span class="badge-tag badge-off">-15%</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Periféricos</div>
+            <div class="product-name">ErgoDesk Kit Pro</div>
+            <div class="product-desc">Teclado mecânico + mouse ergonômico, Bluetooth 5.2</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★☆</div>
+              <span class="reviews">(207)</span>
+            </div>
+            <div>
+              <span class="price-old">R$ 890</span>
+              <span class="price-new">R$ 757</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 6 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            📡
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Redes</div>
+            <div class="product-name">Switch Gerenciável 48P</div>
+            <div class="product-desc">48 portas Gigabit PoE+, 4x SFP 10G, gerenciado via cloud</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★★</div>
+              <span class="reviews">(63)</span>
+            </div>
+            <div>
+              <span class="price-new">R$ 4.290</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 7 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            💾
+            <span class="badge-tag badge-dest">DESTAQUE</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Armazenamento</div>
+            <div class="product-name">NAS ProStore 8-Bay</div>
+            <div class="product-desc">8 baias, RAID 5/6/10, 10GbE, backup automático, 96TB</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★☆</div>
+              <span class="reviews">(42)</span>
+            </div>
+            <div>
+              <span class="price-new">R$ 12.990</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produto 8 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img">
+            📱
+            <span class="badge-tag badge-off">-10%</span>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">Software</div>
+            <div class="product-name">Office 365 Business</div>
+            <div class="product-desc">Licença anual por usuário, Word, Excel, Teams, SharePoint</div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="stars">★★★★★</div>
+              <span class="reviews">(512)</span>
+            </div>
+            <div>
+              <span class="price-old">R$ 62/mês</span>
+              <span class="price-new">R$ 56/mês</span>
+            </div>
+            <button class="btn-add"><i class="bi bi-bag-plus me-1"></i>Adicionar ao carrinho</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="#" class="btn-primary-custom">Ver todos os produtos <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNERS -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="promo-banner">
+          <div class="promo-badge">Oferta Corporativa</div>
+          <h3>Compras acima de 10 unidades</h3>
+          <p>Desconto progressivo de até 18% para pedidos corporativos. Consulte condições especiais para sua empresa.</p>
+          <a href="#" class="btn-primary-custom">Solicitar cotação</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="promo-banner" style="background: linear-gradient(100deg, #1a3a5c 0%, #0D1B2A 100%)">
+          <div class="promo-badge">Plano Serviços</div>
+          <h3>Suporte técnico on-site</h3>
+          <p>Contratos de manutenção preventiva e corretiva para toda sua infraestrutura de TI. SLA garantido.</p>
+          <a href="#" class="btn-primary-custom">Conhecer planos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      <div class="col-6 col-md-3">
+        <div class="trust-item justify-content-center justify-content-md-start">
+          <div class="trust-icon"><i class="bi bi-truck"></i></div>
+          <div>
+            <h6>Entrega Rápida</h6>
+            <p>Até 3 dias úteis para capitais</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item justify-content-center justify-content-md-start">
+          <div class="trust-icon"><i class="bi bi-shield-check"></i></div>
+          <div>
+            <h6>Garantia Total</h6>
+            <p>12 a 36 meses conforme produto</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item justify-content-center justify-content-md-start">
+          <div class="trust-icon"><i class="bi bi-arrow-counterclockwise"></i></div>
+          <div>
+            <h6>Devolução 30 dias</h6>
+            <p>Sem burocracia e sem custo</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item justify-content-center justify-content-md-start">
+          <div class="trust-icon"><i class="bi bi-headset"></i></div>
+          <div>
+            <h6>Suporte 24/7</h6>
+            <p>Técnicos especializados sempre</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-md-5">
+        <h2>Fique por dentro das novidades</h2>
+        <p>Receba ofertas exclusivas, lançamentos e conteúdo técnico direto no seu e-mail.</p>
+      </div>
+      <div class="col-md-7">
+        <div class="d-flex">
+          <input class="nl-input" type="email" placeholder="seu@email.com.br" />
+          <button class="nl-btn">Assinar <i class="bi bi-send ms-1"></i></button>
+        </div>
+        <p style="font-size:.72rem; color:var(--mid); margin-top:.5rem; margin-bottom:0;">
+          Ao assinar, você concorda com nossa <a href="#" style="color:var(--sky)">Política de Privacidade</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">NEXUS<span>.</span></div>
+        <p style="font-size:.85rem; line-height:1.65; max-width:300px;">Distribuidor autorizado de tecnologia corporativa desde 2008. Mais de 12.000 empresas confiam na NEXUS.</p>
+        <div class="mt-3">
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>Produtos</h6>
+        <a href="#">Notebooks</a>
+        <a href="#">Workstations</a>
+        <a href="#">Servidores</a>
+        <a href="#">Redes</a>
+        <a href="#">Periféricos</a>
+        <a href="#">Software</a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>Empresa</h6>
+        <a href="#">Sobre nós</a>
+        <a href="#">Carreiras</a>
+        <a href="#">Parceiros</a>
+        <a href="#">Imprensa</a>
+        <a href="#">Sustentabilidade</a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>Suporte</h6>
+        <a href="#">Central de ajuda</a>
+        <a href="#">Rastrear pedido</a>
+        <a href="#">Garantia</a>
+        <a href="#">Devoluções</a>
+        <a href="#">Manuais</a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>Legal</h6>
+        <a href="#">Termos de uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Cookies</a>
+        <a href="#">LGPD</a>
+        <a href="#">Compliance</a>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span>© 2026 NEXUS Store. Todos os direitos reservados. CNPJ 00.000.000/0001-00</span>
+      <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
+        <img src="https://via.placeholder.com/40x24/1E3A5F/FFFFFF?text=VISA" alt="Visa" style="border-radius:4px; height:22px;" />
+        <img src="https://via.placeholder.com/40x24/1E3A5F/FFFFFF?text=MC" alt="Mastercard" style="border-radius:4px; height:22px;" />
+        <img src="https://via.placeholder.com/40x24/1E3A5F/FFFFFF?text=PIX" alt="Pix" style="border-radius:4px; height:22px;" />
+        <img src="https://via.placeholder.com/40x24/1E3A5F/FFFFFF?text=AMEX" alt="Amex" style="border-radius:4px; height:22px;" />
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
