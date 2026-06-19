@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carousel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --text: #f0ece4;
+      --muted: #7a7570;
+      --accent: #c8a96e;
+      --accent-dim: rgba(200,169,110,0.12);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* Carousel wrapper */
+    .carousel-wrapper {
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+    }
+
+    .carousel {
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: transform;
+    }
+
+    /* Cards */
+    .slide {
+      min-width: 100%;
+      position: relative;
+      height: 420px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .slide.active .slide-bg {
+      transform: scale(1);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,14,14,0.88) 0%, rgba(14,14,14,0.1) 55%, transparent 100%);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 2.5rem;
+      width: 100%;
+    }
+
+    .slide-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-desc {
+      font-size: 0.85rem;
+      color: rgba(240,236,228,0.65);
+      font-weight: 300;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+
+    .arrows {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .arrow {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+      border-radius: 1px;
+    }
+
+    .arrow:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Counter */
+    .counter {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .counter span {
+      color: var(--accent);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.1s linear;
+      z-index: 3;
+    }
+
+    @media (max-width: 520px) {
+      .slide { height: 300px; }
+      .slide-content { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">Galeria em destaque</p>
+    <h1>Explorando o <em>mundo</em></h1>
+  </header>
+
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <div class="track" id="track">
+
+        <div class="slide active">
+          <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80')"></div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">Natureza</span>
+            <h2 class="slide-title">Picos nevados dos Alpes</h2>
+            <p class="slide-desc">Montanhas que tocam as nuvens e guardam silêncios milenares entre glaciares e vales verdes.</p>
+          </div>
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=900&q=80')"></div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">Urbano</span>
+            <h2 class="slide-title">Metrópoles que nunca dormem</h2>
+            <p class="slide-desc">Arranha-céus e avenidas iluminadas que pulsam com vida, cultura e movimento incessante.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80')"></div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">Praias</span>
+            <h2 class="slide-title">Areias brancas e mar turquesa</h2>
+            <p class="slide-desc">Costas paradisíacas onde o tempo desacelera e o horizonte encontra o azul do céu.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=80')"></div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">Floresta</span>
+            <h2 class="slide-title">Florestas ancestrais e trilhas</h2>
+            <p class="slide-desc">Caminhos entre árvores centenárias, luz filtrada e um silêncio que convida à contemplação.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="controls">
+      <p class="counter"><span id="current">01</span> / <span id="total">04</span></p>
+      <div class="dots" id="dots"></div>
+      <div class="arrows">
+        <button class="arrow" id="prev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="arrow" id="next" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const track = document.getElementById('track');
+    const slides = Array.from(track.children);
+    const dotsContainer = document.getElementById('dots');
+    const currentEl = document.getElementById('current');
+    const progressBar = document.getElementById('progressBar');
+
+    let current = 0;
+    let autoTimer = null;
+    let progressTimer = null;
+    const DURATION = 4000;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Slide ${i + 1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      currentEl.textContent = String(current + 1).padStart(2, '0');
+      resetProgress();
+    }
+
+    function resetProgress() {
+      clearInterval(progressTimer);
+      progressBar.style.transition = 'none';
+      progressBar.style.width = '0%';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          progressBar.style.transition = `width ${DURATION}ms linear`;
+          progressBar.style.width = '100%';
+        });
+      });
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(current + 1), DURATION);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => {
+      goTo(current - 1);
+      startAuto();
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      goTo(current + 1);
+      startAuto();
+    });
+
+    // Drag/swipe
+    let startX = 0;
+    track.addEventListener('pointerdown', e => { startX = e.clientX; });
+    track.addEventListener('pointerup', e => {
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); startAuto(); }
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { goTo(current - 1); startAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); startAuto(); }
+    });
+
+    // Init
+    resetProgress();
+    startAuto();
+  </script>
+</body>
+</html>
