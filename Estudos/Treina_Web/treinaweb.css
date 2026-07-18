@@ -1,12 +1,12 @@
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 0; /* remove a margem e o padding padrão do navegador */
   background-color: #376fe9;
 }
 
 .container {
-  height:500em;
-  position: relative;
+  height: 500em; /* altura do container */
+  position: relative; /* define a posição relativa para que os elementos filhos possam ser posicionados em relação a ele */
 }
 
 .treinaWeb {
