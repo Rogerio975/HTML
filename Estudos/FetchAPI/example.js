@@ -1,4 +1,4 @@
-fetch('https://jsonplaceholder.typicode.com/posts/77')
+fetch('https://jsonplaceholder.typicode.com/posts')
   .then(resposta => {
     if (resposta.ok) {
       return resposta.json();
