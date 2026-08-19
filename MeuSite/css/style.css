@@ -13,3 +13,9 @@ button {
     padding: 10px 20px;
     cursor: pointer;
 }
+
+#mensagem {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #0d146d;
+}
