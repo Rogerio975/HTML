@@ -7,5 +7,5 @@ botao.addEventListener("click", function () {
 const mensagem = document.getElementById("mensagem");
 
 botao.addEventListener("click", function () {
-    mensagem.innerHTML = "<p>Você clicou no botão!</p>";
+    mensagem.innerHTML = "<p>Você clicou no botão <strong>Clique aqui</strong>!</p>";
 });
