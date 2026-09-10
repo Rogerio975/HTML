@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quem Pode Votar? - Verificador de Elegibilidade Eleitoral</title>
+<style>
+  :root {
+    --bg-dark: #0d1117;
+    --bg-panel: #161b22;
+    --bg-panel-2: #1c2128;
+    --border: #30363d;
+    --green: #2ea043;
+    --green-bright: #3fb950;
+    --yellow: #d29922;
+    --red: #da3633;
+    --blue: #58a6ff;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: linear-gradient(160deg, var(--bg-dark) 0%, #0a0e14 100%);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  header .flag {
+    font-size: 40px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-top: 8px;
+    background: linear-gradient(90deg, var(--green-bright), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .field input[type="number"],
+  .field input[type="date"] {
+    width: 100%;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  .field input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+
+  .toggle-row .label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .toggle-row .label-group span.title {
+    font-size: 0.9rem;
+  }
+
+  .toggle-row .label-group span.hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .switch {
+    position: relative;
+    width: 46px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #30363d;
+    transition: 0.2s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: var(--green);
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(22px);
+  }
+
+  button#analisar {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--green), var(--green-bright));
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+  }
+
+  button#analisar:hover {
+    opacity: 0.92;
+  }
+
+  button#analisar:active {
+    transform: scale(0.98);
+  }
+
+  #resultado {
+    margin-top: 24px;
+    display: none;
+  }
+
+  .result-box {
+    border-radius: 10px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-box.pode {
+    background: rgba(46, 160, 67, 0.12);
+    border-color: var(--green);
+  }
+
+  .result-box.facultativo {
+    background: rgba(210, 153, 34, 0.12);
+    border-color: var(--yellow);
+  }
+
+  .result-box.nao {
+    background: rgba(218, 54, 51, 0.12);
+    border-color: var(--red);
+  }
+
+  .result-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .result-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .reasons {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .reasons li {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .reasons li .bullet {
+    flex-shrink: 0;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="flag">🗳️</div>
+    <h1>Verificador de Elegibilidade Eleitoral</h1>
+    <p>Descubra se você pode votar nas eleições brasileiras e se o voto é obrigatório ou facultativo</p>
+  </header>
+
+  <form class="card" id="formulario-eleitor">
+    <div class="field">
+      <label for="dataNascimento">Data de nascimento</label>
+      <input type="date" id="dataNascimento">
+    </div>
+
+    <div class="toggle-row">
+      <div class="label-group">
+        <span class="title">É brasileiro(a) (nato ou naturalizado)</span>
+        <span class="hint">Estrangeiros não podem votar no Brasil</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="brasileiro" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div class="label-group">
+        <span class="title">Sabe ler e escrever</span>
+        <span class="hint">Analfabetos: voto facultativo</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="alfabetizado" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div class="label-group">
+        <span class="title">É conscrito em serviço militar obrigatório</span>
+        <span class="hint">Durante o período, não pode alistar-se nem votar</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="conscrito">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button id="analisar" type="submit">Analisar elegibilidade</button>
+
+    <div id="resultado"></div>
+  </form>
+
+  <footer>
+    Baseado nos arts. 14 e 143 da Constituição Federal e no Código Eleitoral (Lei 4.737/1965).<br>
+    Ferramenta educativa e informativa — não substitui a consulta oficial ao TSE.
+  </footer>
+</div>
+
+<script>
+function calcularIdade(nascimento) {
+  const hoje = new Date();
+  const nasc = new Date(nascimento + 'T00:00:00');
+  let idade = hoje.getFullYear() - nasc.getFullYear();
+  const m = hoje.getMonth() - nasc.getMonth();
+  if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) {
+    idade--;
+  }
+  return idade;
+}
+
+document.getElementById('formulario-eleitor').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const dataNascimento = document.getElementById('dataNascimento').value;
+  const brasileiro = document.getElementById('brasileiro').checked;
+  const alfabetizado = document.getElementById('alfabetizado').checked;
+  const conscrito = document.getElementById('conscrito').checked;
+  const resultadoDiv = document.getElementById('resultado');
+
+  if (!dataNascimento) {
+    resultadoDiv.style.display = 'block';
+    resultadoDiv.innerHTML = `
+      <div class="result-box nao">
+        <div class="result-title">⚠️ Informe a data de nascimento</div>
+        <div class="result-desc">É necessário preencher a data para calcular a idade.</div>
+      </div>`;
+    return;
+  }
+
+  const idade = calcularIdade(dataNascimento);
+  const razoes = [];
+  let status = 'pode';       // pode | facultativo | nao
+  let tituloTexto = '';
+  let descTexto = '';
+
+  if (!brasileiro) {
+    status = 'nao';
+    tituloTexto = '❌ Não pode votar';
+    descTexto = 'Apenas brasileiros natos ou naturalizados podem votar nas eleições brasileiras.';
+    razoes.push({ ok: false, texto: 'Nacionalidade estrangeira impede o alistamento eleitoral no Brasil.' });
+  } else if (idade < 16) {
+    status = 'nao';
+    tituloTexto = '❌ Não pode votar ainda';
+    descTexto = `Com ${idade} anos, a idade mínima de 16 anos ainda não foi atingida.`;
+    razoes.push({ ok: false, texto: 'Idade mínima para alistamento e voto: 16 anos.' });
+  } else if (conscrito) {
+    status = 'nao';
+    tituloTexto = '❌ Não pode votar durante o serviço militar';
+    descTexto = 'Conscritos durante o serviço militar obrigatório são inalistáveis e não podem votar nesse período.';
+    razoes.push({ ok: false, texto: 'Conscritos (soldados, marinheiros, aeronautas e outros em serviço militar obrigatório) não podem se alistar nem votar enquanto durar o serviço.' });
+  } else {
+    // A partir daqui, pode votar - resta saber se é obrigatório ou facultativo
+    if (idade >= 18 && idade <= 70 && alfabetizado) {
+      status = 'pode';
+      tituloTexto = '✅ Pode votar — Voto obrigatório';
+      descTexto = `Com ${idade} anos, alfabetizado(a) e dentro da faixa de 18 a 70 anos, o voto é obrigatório.`;
+      razoes.push({ ok: true, texto: 'Idade entre 18 e 70 anos.' });
+      razoes.push({ ok: true, texto: 'Alfabetizado(a).' });
+      razoes.push({ ok: true, texto: 'Nacionalidade brasileira confirmada.' });
+    } else {
+      status = 'facultativo';
+      tituloTexto = '✅ Pode votar — Voto facultativo';
+      descTexto = `Com ${idade} anos, o voto é facultativo (não obrigatório).`;
+      razoes.push({ ok: true, texto: 'Nacionalidade brasileira confirmada.' });
+
+      if (idade >= 16 && idade < 18) {
+        razoes.push({ ok: true, texto: 'Jovens de 16 e 17 anos: voto facultativo.' });
+      }
+      if (idade > 70) {
+        razoes.push({ ok: true, texto: 'Maiores de 70 anos: voto facultativo.' });
+      }
+      if (!alfabetizado) {
+        razoes.push({ ok: true, texto: 'Pessoas analfabetas: voto facultativo (mesmo entre 18 e 70 anos).' });
+      }
+    }
+  }
+
+  resultadoDiv.style.display = 'block';
+  resultadoDiv.innerHTML = `
+    <div class="result-box ${status}">
+      <div class="result-title">${tituloTexto}</div>
+      <div class="result-desc">${descTexto}</div>
+      <ul class="reasons">
+        ${razoes.map(r => `<li><span class="bullet">${r.ok ? '✔️' : '✖️'}</span><span>${r.texto}</span></li>`).join('')}
+      </ul>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>
