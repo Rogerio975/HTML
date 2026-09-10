@@ -323,7 +323,7 @@
 <script>
 function calcularIdade(nascimento) {
   const hoje = new Date();
-  const nasc = new Date(nascimento + 'T00:00:00');
+  const nasc = new Date(nascimento + 'T00:00:00'); // Adiciona horário para evitar problemas de fuso horário
   let idade = hoje.getFullYear() - nasc.getFullYear();
   const m = hoje.getMonth() - nasc.getMonth();
   if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) {
@@ -342,7 +342,7 @@ document.getElementById('formulario-eleitor').addEventListener('submit', functio
   const resultadoDiv = document.getElementById('resultado');
 
   if (!dataNascimento) {
-    resultadoDiv.style.display = 'block';
+    resultadoDiv.style.display = 'block'; // Exibe o resultado mesmo sem data para mostrar a mensagem de erro
     resultadoDiv.innerHTML = `
       <div class="result-box nao">
         <div class="result-title">⚠️ Informe a data de nascimento</div>
