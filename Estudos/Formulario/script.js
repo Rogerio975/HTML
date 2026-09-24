@@ -8,7 +8,7 @@ function validateEmail(email) {
     return regex.test(email);
 }
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const name = nameInput.value.trim();
@@ -26,7 +26,26 @@ form.addEventListener('submit', function (event) {
         return;
     }
 
-    formMessage.textContent = `Formulário enviado com sucesso, ${name}!`;
-    formMessage.className = 'form-message success';
-    form.reset();
+    try {
+        const response = await fetch('/api/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Erro ao enviar formulário.');
+        }
+
+        formMessage.textContent = `Formulário enviado com sucesso, ${name}!`;
+        formMessage.className = 'form-message success';
+        form.reset();
+    } catch (error) {
+        formMessage.textContent = error.message || 'Erro ao enviar formulário.';
+        formMessage.className = 'form-message error';
+    }
 });
