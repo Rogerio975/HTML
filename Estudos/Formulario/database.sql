@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS contacts (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL,
-    phone VARCHAR(20),
+    phone VARCHAR(20) NOT NULL, -- NOTE: The phone number is stored as a string to accommodate different formats and international numbers
     is_whatsapp BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
