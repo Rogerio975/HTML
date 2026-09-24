@@ -2,6 +2,7 @@ const form = document.getElementById('contactForm');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const formMessage = document.getElementById('formMessage');
+const phoneInput = document.getElementById('phone');
 
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,8 +14,9 @@ form.addEventListener('submit', async function (event) {
 
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
 
-    if (!name || !email) {
+    if (!name || !email || !phone) {
         formMessage.textContent = 'Por favor, preencha todos os campos.';
         formMessage.className = 'form-message error';
         return;
@@ -32,7 +34,7 @@ form.addEventListener('submit', async function (event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, email })
+            body: JSON.stringify({ name, email, phone })
         });
 
         const data = await response.json();
