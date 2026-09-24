@@ -37,18 +37,18 @@ app.get('/api/health', async (req, res) => {
 });
 
 app.post('/api/contacts', async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, phone, isWhatsapp } = req.body;
 
-  if (!name || !email) {
+  if (!name || !email || !phone) {
     return res.status(400).json({
-      message: 'Nome e e-mail são obrigatórios.',
+      message: 'Nome, e-mail e telefone são obrigatórios.',
     });
   }
 
   try {
     const result = await pool.query(
-      'INSERT INTO contacts (name, email) VALUES ($1, $2) RETURNING *',
-      [name.trim(), email.trim()]
+      'INSERT INTO contacts (name, email, phone, is_whatsapp) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name.trim(), email.trim(), phone.trim(), Boolean(isWhatsapp)]
     );
 
     return res.status(201).json({
