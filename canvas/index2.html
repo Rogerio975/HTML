@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemplo Canvas</title>
+  <style>
+    /* Borda apenas para visualizar onde fica o canvas */
+    #meuCanvas {
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elemento Canvas -->
+  <canvas id="meuCanvas" width="400" height="200"></canvas>
+
+  <script>
+    // Código JavaScript para desenhar
+    // 1. Captura o elemento do DOM
+const canvas = document.getElementById("meuCanvas");
+
+// 2. Obtém o contexto 2D (a ferramenta de pintura)
+const ctx = canvas.getContext("2d");
+
+// 3. Desenha um retângulo preenchido
+ctx.fillStyle = "#3498db"; // Cor de preenchimento (Azul)
+ctx.fillRect(20, 20, 150, 100); // (x, y, largura, altura)
+
+// 4. Desenha uma linha
+ctx.beginPath();
+ctx.moveTo(200, 20);  // Ponto inicial (x, y)
+ctx.lineTo(350, 120); // Ponto final (x, y)
+ctx.strokeStyle = "#e74c3c"; // Cor da linha (Vermelho)
+ctx.lineWidth = 4;    // Espessura
+ctx.stroke();         // Aplica o traço
+
+// 5. Desenha um círculo
+ctx.beginPath();
+ctx.arc(100, 150, 30, 0, Math.PI * 2); // (x, y, raio, anguloInicial, anguloFinal)
+ctx.fillStyle = "#2ecc71"; // Cor (Verde)
+ctx.fill();
+
+// 6. Escreve um texto
+ctx.font = "18px Arial";
+ctx.fillStyle = "#333";
+ctx.fillText("Olá, Canvas!", 200, 170); // (texto, x, y)
+  </script>
+</body>
+</html>
