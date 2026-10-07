@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saudação</title>
+  <style>
+    :root {
+      --bg: #0b1426;
+      --card: #12203a;
+      --border: #1f3358;
+      --text: #e6edf7;
+      --muted: #8da2c0;
+      --accent: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      padding: 16px;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    h1 { margin: 0 0 6px; font-size: 1.3rem; }
+    p.sub { margin: 0 0 20px; color: var(--muted); font-size: 0.9rem; }
+    label { display: block; margin-bottom: 6px; font-size: 0.85rem; color: var(--muted); }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+    input:focus { border-color: var(--accent); }
+    button {
+      margin-top: 14px;
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.1); }
+    #resultado {
+      margin-top: 22px;
+      min-height: 2.4rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    #hora {
+      margin-top: 4px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Saudação</h1>
+    <p class="sub">Digite seu nome para receber a saudação do momento.</p>
+
+    <form id="form">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" placeholder="Ex.: Rogerio" autocomplete="given-name" autofocus />
+      <button type="submit">Saudar</button>
+    </form>
+
+    <div id="resultado" aria-live="polite"></div>
+    <div id="hora"></div>
+  </main>
+
+  <script>
+    function saudacao(nome, data = new Date()) {
+      const hora = data.getHours();
+      let periodo;
+      if (hora >= 5 && hora < 12) periodo = "Bom dia";
+      else if (hora >= 12 && hora < 18) periodo = "Boa tarde";
+      else periodo = "Boa noite";
+      return `${periodo}, ${nome}!`;
+    }
+
+    const form = document.getElementById("form");
+    const inputNome = document.getElementById("nome");
+    const resultado = document.getElementById("resultado");
+    const horaEl = document.getElementById("hora");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nome = inputNome.value.trim() || "usuário";
+      resultado.textContent = saudacao(nome);
+      horaEl.textContent = "Horário local: " + new Date().toLocaleTimeString("pt-BR");
+    });
+  </script>
+</body>
+</html>
