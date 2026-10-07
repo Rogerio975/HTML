@@ -109,8 +109,14 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const nome = inputNome.value.trim() || "usuário";
+      const data = new Date();
       resultado.textContent = saudacao(nome);
-      horaEl.textContent = "Horário local: " + new Date().toLocaleTimeString("pt-BR");
+      horaEl.textContent = `${data.toLocaleDateString("pt-BR", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      })} • Horário local: ${data.toLocaleTimeString("pt-BR")}`;
     });
   </script>
 </body>
