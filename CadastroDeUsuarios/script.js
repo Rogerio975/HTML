@@ -116,7 +116,7 @@ function renderizarTabela() {
         u.email.toLowerCase().includes(termoBusca)
     );
 
-    userCount.textContent = `${usuarios.length} ${usuarios.length === 1 ? 'usuário' : 'usuários'}`;
+    userCount.textContent = `${usuarios.length} ${usuarios.length === 1 ? 'usuário' : 'usuários'}`; // Atualiza contagem de usuários
 
     if (usuarios.length > 0) {
         btnLimparTudo.classList.remove('hidden');
