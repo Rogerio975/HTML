@@ -1,5 +1,5 @@
 // Chave do LocalStorage
-const STORAGE_KEY = 'cadastros_usuarios_app';
+const STORAGE_KEY = 'cadastros_usuarios_app'; // Chave para armazenar os cadastros de usuários no LocalStorage
 
 // Elementos do DOM
 const userForm = document.getElementById('userForm');
