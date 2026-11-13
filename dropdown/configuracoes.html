@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      font-family: Arial, sans-serif;
+      color: #1f2937;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color: #e5e7eb;
+    }
+
+    .card {
+      width: min(760px, 90vw);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      padding: 32px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark .card {
+      background: #111827;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #111827;
+    }
+
+    .btn-voltar {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #e5e7eb;
+      color: #111827;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .lista {
+      display: grid;
+      gap: 16px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #f9fafb;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.dark .item {
+      background: #1f2937;
+      border-color: #374151;
+    }
+
+    .texto strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    body.dark .texto strong {
+      color: #f3f4f6;
+    }
+
+    .texto span {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    body.dark .texto span {
+      color: #cbd5e1;
+    }
+
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 30px;
+      background: #d1d5db;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle::before {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      left: 4px;
+      top: 4px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .toggle.ativo {
+      background: #2563eb;
+    }
+
+    .toggle.ativo::before {
+      transform: translateX(22px);
+    }
+
+    .toggle:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 22px 18px; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .item { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <h1>Configurações</h1>
+      <a class="btn-voltar" href="dropdown.html">Voltar</a>
+    </div>
+
+    <section class="lista">
+      <div class="item">
+        <div class="texto">
+          <strong>Notificações</strong>
+          <span>Receber alertas por e-mail e no app.</span>
+        </div>
+        <button class="toggle ativo" type="button" data-setting="notificacoes" aria-label="Notificações ativadas" aria-pressed="true"></button>
+      </div>
+
+      <div class="item">
+        <div class="texto">
+          <strong>Modo escuro</strong>
+          <span>Ativar tema visual mais escuro.</span>
+        </div>
+        <button class="toggle" type="button" data-setting="darkMode" aria-label="Modo escuro desativado" aria-pressed="false"></button>
+      </div>
+
+      <div class="item">
+        <div class="texto">
+          <strong>Privacidade</strong>
+          <span>Controlar visibilidade das informações do perfil.</span>
+        </div>
+        <button class="toggle ativo" type="button" data-setting="privacidade" aria-label="Privacidade ativada" aria-pressed="true"></button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SETTINGS_KEY = 'configuracoes_usuario';
+    const defaultSettings = {
+      notificacoes: true,
+      darkMode: false,
+      privacidade: true
+    };
+
+    const toggles = document.querySelectorAll('.toggle');
+
+    function carregarConfiguracoes() {
+      const salvo = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null');
+      const config = { ...defaultSettings, ...(salvo || {}) };
+
+      toggles.forEach((botao) => {
+        const nome = botao.dataset.setting;
+        const ativo = Boolean(config[nome]);
+        botao.classList.toggle('ativo', ativo);
+        botao.setAttribute('aria-pressed', String(ativo));
+        botao.setAttribute('aria-label', botao.textContent || getLabel(nome, ativo));
+      });
+
+      aplicarTema(Boolean(config.darkMode));
+    }
+
+    function getLabel(nome, ativo) {
+      const labels = {
+        notificacoes: ativo ? 'Notificações ativadas' : 'Notificações desativadas',
+        darkMode: ativo ? 'Modo escuro ativado' : 'Modo escuro desativado',
+        privacidade: ativo ? 'Privacidade ativada' : 'Privacidade desativada'
+      };
+      return labels[nome] || 'Configuração';
+    }
+
+    function aplicarTema(ativo) {
+      document.body.classList.toggle('dark', ativo);
+    }
+
+    function salvarConfiguracoes() {
+      const config = {};
+      toggles.forEach((botao) => {
+        const nome = botao.dataset.setting;
+        config[nome] = botao.classList.contains('ativo');
+      });
+
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(config));
+      aplicarTema(Boolean(config.darkMode));
+    }
+
+    toggles.forEach((botao) => {
+      botao.addEventListener('click', () => {
+        const ativo = !botao.classList.contains('ativo');
+        botao.classList.toggle('ativo', ativo);
+        botao.setAttribute('aria-pressed', String(ativo));
+        botao.setAttribute('aria-label', getLabel(botao.dataset.setting, ativo));
+        salvarConfiguracoes();
+      });
+    });
+
+    carregarConfiguracoes();
+  </script>
+</body>
+</html>

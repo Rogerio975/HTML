@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuda</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+      font-family: Arial, sans-serif;
+      color: #1f2937;
+    }
+
+    .card {
+      width: min(760px, 90vw);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      padding: 32px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #111827;
+    }
+
+    .btn-voltar {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #e5e7eb;
+      color: #111827;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .lista {
+      display: grid;
+      gap: 18px;
+    }
+
+    .bloco {
+      padding: 18px 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #f9fafb;
+    }
+
+    .bloco h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: #111827;
+    }
+
+    .bloco p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 22px 18px; }
+      .header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <h1>Ajuda</h1>
+      <a class="btn-voltar" href="dropdown.html">Voltar</a>
+    </div>
+
+    <section class="lista">
+      <article class="bloco">
+        <h2>Como editar meu perfil?</h2>
+        <p>Abra o menu, clique em “Editar perfil” e altere seus dados. Depois, confirme as mudanças com o botão “Salvar alterações”.</p>
+      </article>
+
+      <article class="bloco">
+        <h2>Como ajustar as configurações?</h2>
+        <p>Na página de configurações, você pode ativar ou desativar opções como notificações, tema e privacidade.</p>
+      </article>
+
+      <article class="bloco">
+        <h2>Precisa de suporte?</h2>
+        <p>Entre em contato com a equipe de suporte pelo e-mail suporte@empresa.com ou acesse o centro de ajuda da plataforma.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
