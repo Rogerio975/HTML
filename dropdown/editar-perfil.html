@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar perfil</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      font-family: Arial, sans-serif;
+      color: #1f2937;
+    }
+
+    .card {
+      width: min(760px, 90vw);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      padding: 32px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .titulo {
+      font-size: 2rem;
+      margin: 0;
+      color: #111827;
+    }
+
+    .btn-voltar {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #e5e7eb;
+      color: #111827;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn-voltar:hover {
+      background: #d1d5db;
+    }
+
+    .conteudo {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+    }
+
+    .perfil {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c7d2fe, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #1d4ed8;
+      font-weight: bold;
+      box-shadow: inset 0 0 0 4px #ffffff;
+    }
+
+    .btn-upload {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .linha {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #fff;
+      font-size: 15px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .acoes {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-cancelar {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .btn-cancelar:hover {
+      background: #d1d5db;
+    }
+
+    .btn-salvar {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-salvar:hover {
+      background: #1d4ed8;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 22px 18px;
+      }
+
+      .conteudo {
+        grid-template-columns: 1fr;
+      }
+
+      .linha {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <h1 class="titulo">Editar perfil</h1>
+      <a class="btn-voltar" href="dropdown.html">Voltar</a>
+    </div>
+
+    <div class="conteudo">
+      <aside class="perfil">
+        <div class="avatar">R</div>
+        <button class="btn-upload" type="button">Trocar foto</button>
+      </aside>
+
+      <form>
+        <div class="linha">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" value="Rogério Silva" placeholder="Digite seu nome">
+          </div>
+
+          <div class="campo">
+            <label for="usuario">Usuário</label>
+            <input id="usuario" type="text" value="rogerio.silva" placeholder="Seu usuário">
+          </div>
+        </div>
+
+        <div class="linha">
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" value="rogerio@email.com" placeholder="seu@email.com">
+          </div>
+
+          <div class="campo">
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="tel" value="(11) 99999-9999" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="bio">Biografia</label>
+          <textarea id="bio" placeholder="Fale um pouco sobre você...">Desenvolvedor front-end apaixonado por interfaces modernas e experiências suaves para o usuário.</textarea>
+        </div>
+
+        <div class="acoes">
+          <button type="button" class="btn btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn btn-salvar">Salvar alterações</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
