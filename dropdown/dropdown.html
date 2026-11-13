@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown com Popper.js</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150vh; /* Altura extra para testar o reposicionamento ao rolar */
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    #botao-menu {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    #botao-menu:hover {
+      background-color: #1d4ed8;
+    }
+
+    /* Estilo do Menu Flutuante */
+    #menu-dropdown {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      padding: 6px 0;
+      min-width: 180px;
+      display: none; /* Oculto por padrão */
+      z-index: 1000;
+    }
+
+    /* Exibe o menu quando ativo */
+    #menu-dropdown[data-show] {
+      display: block;
+    }
+
+    /* Itens internos do menu */
+    .item-menu {
+      display: block;
+      padding: 10px 16px;
+      color: #374151;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .item-menu:hover {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão de Gatilho -->
+  <button id="botao-menu" aria-expanded="false" aria-controls="menu-dropdown">
+    Opções ▼
+  </button>
+
+  <!-- Menu Dropdown -->
+  <div id="menu-dropdown" role="menu">
+    <a href="#" class="item-menu">Editar perfil</a>
+    <a href="#" class="item-menu">Configurações</a>
+    <a href="#" class="item-menu">Ajuda</a>
+    <a href="#" class="item-menu" style="color: #dc2626;">Sair</a>
+  </div>
+
+  <!-- Importando o Popper.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+  <script>
+    const botao = document.querySelector('#botao-menu');
+    const menu = document.querySelector('#menu-dropdown');
+
+    // Inicializa o Popper alinhado à esquerda da parte inferior do botão
+    const popperInstance = Popper.createPopper(botao, menu, {
+      placement: 'bottom-start',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 6] // 0px horizontal, 6px vertical de distância
+          }
+        },
+      ],
+    });
+
+    function abrirMenu() {
+      menu.setAttribute('data-show', '');
+      botao.setAttribute('aria-expanded', 'true');
+      popperInstance.update(); // Garante o cálculo exato da posição ao abrir
+    }
+
+    function fecharMenu() {
+      menu.removeAttribute('data-show');
+      botao.setAttribute('aria-expanded', 'false');
+    }
+
+    // Alterna entre abrir e fechar ao clicar no botão
+    botao.addEventListener('click', (evento) => {
+      evento.stopPropagation(); // Evita que o clique dispare o evento do document
+      const estaAberto = menu.hasAttribute('data-show');
+      
+      if (estaAberto) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    // Fecha o menu se clicar em qualquer lugar fora dele
+    document.addEventListener('click', (evento) => {
+      if (!menu.contains(evento.target) && evento.target !== botao) {
+        fecharMenu();
+      }
+    });
+
+    // Fecha o menu ao pressionar a tecla Escape (Esc)
+    document.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Escape') {
+        fecharMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
