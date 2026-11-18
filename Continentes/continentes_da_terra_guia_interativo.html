@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continentes da Terra — Atlas Interativo</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontes Google: Inter e Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados complementares para glassmorphism e transições suaves */
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .banner-gradient-overlay {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.45) 55%, rgba(15, 23, 42, 0.2) 100%);
+        }
+        .card-banner-overlay {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.1) 70%);
+        }
+        /* Barra de rolagem discreta */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.4);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Barra de Navegação Superior -->
+    <header class="sticky top-0 z-40 w-full glass-panel bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo / Título -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="globe-2" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg tracking-tight block leading-none">Terra<span class="text-sky-600 dark:text-sky-400">Atlas</span></span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Geografia Mundial</span>
+                </div>
+            </a>
+
+            <!-- Links de Navegação Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#destaques" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Banners em Destaque</a>
+                <a href="#modelos" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Modelos Continentais</a>
+                <a href="#explorar" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Explorar Continentes</a>
+            </nav>
+
+            <!-- Controles de Ação (Tema e Filtro Rápido) -->
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Alternar tema claro ou escuro" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-700"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Principal: Carrossel de Banners dos Continentes -->
+    <section id="destaques" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-200/20 dark:border-slate-800 h-[440px] sm:h-[500px] lg:h-[540px] group">
+            
+            <!-- Container dos Slides do Carrossel -->
+            <div id="hero-carousel-slides" class="w-full h-full relative">
+                <!-- Slides injetados dinamicamente via JavaScript -->
+            </div>
+
+            <!-- Botões de Navegação Lateral (Anterior / Próximo) -->
+            <button id="prev-slide" aria-label="Banner anterior" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-2xl glass-panel bg-white/15 hover:bg-white/30 text-white border border-white/20 transition-all opacity-80 group-hover:opacity-100 focus:outline-none">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="next-slide" aria-label="Próximo banner" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-2xl glass-panel bg-white/15 hover:bg-white/30 text-white border border-white/20 transition-all opacity-80 group-hover:opacity-100 focus:outline-none">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Indicadores Inferiores (Mini-tabs dos Continentes) -->
+            <div id="carousel-indicators" class="absolute bottom-5 left-4 right-4 sm:left-8 sm:right-8 z-20 flex flex-wrap items-center justify-between gap-3">
+                <div id="carousel-dots" class="flex items-center gap-2 overflow-x-auto pb-1">
+                    <!-- Botões indicadores injetados via JS -->
+                </div>
+                <div class="hidden sm:flex items-center gap-2 text-xs text-slate-300 glass-panel bg-slate-900/50 px-3 py-1.5 rounded-full border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Padrão Brasileiro: 6 Continentes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Explicativa: Seletor de Modelos Continentais -->
+    <section id="modelos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300 mb-3">
+                        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                        <span>Critérios Geográficos e Culturais</span>
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                        Quantos continentes existem na Terra?
+                    </h2>
+                    <p id="model-description" class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                        No Brasil e na América Latina, adota-se o modelo de <strong>6 continentes</strong>, onde a América é considerada uma única massa continental subdividida em Norte, Central e Sul. Alterne abaixo para comparar os diferentes critérios mundiais:
+                    </p>
+                </div>
+
+                <!-- Botões de Alternância de Modelo -->
+                <div class="flex flex-wrap gap-2 bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl self-start lg:self-center">
+                    <button data-model="6" class="model-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white dark:bg-slate-700 text-sky-600 dark:text-sky-300 shadow-sm">
+                        6 Continentes (Brasil)
+                    </button>
+                    <button data-model="7" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        7 Continentes
+                    </button>
+                    <button data-model="5" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        5 Continentes (ONU/Olímpico)
+                    </button>
+                    <button data-model="4" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        4 Continentes (Físico)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Resumo Estatístico do Modelo Ativo -->
+            <div id="model-stats-bar" class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Principal de Cards com Banners dos Continentes -->
+    <section id="explorar" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                    Explore os Continentes
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1">
+                    Clique em qualquer banner para abrir o dossiê geográfico completo, dados demográficos e curiosidades.
+                </p>
+            </div>
+            <div id="active-model-badge" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 text-sm font-medium self-start">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span>Exibindo: Modelo de 6 Continentes</span>
+            </div>
+        </div>
+
+        <!-- Grid Responsivo de Banners/Cards -->
+        <div id="continents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Cards com Banners injetados via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes do Continente -->
+    <div id="continent-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/75 glass-panel animate-fade-in" role="dialog" aria-modal="true">
+        <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl">
+            <!-- Botão Fechar -->
+            <button id="close-modal" aria-label="Fechar detalhes" class="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white backdrop-blur-md transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Conteúdo do Modal injetado dinamicamente -->
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+                <i data-lucide="compass" class="w-4 h-4 text-sky-500"></i>
+                <span>TerraAtlas — Material Didático Interativo sobre os Continentes da Terra</span>
+            </div>
+            <p>Dados geográficos aproximados para fins educacionais.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript Completa -->
+    <script>
+        /**
+         * Banco de dados completo dos continentes e divisões alternativas
+         * Inclui URLs de imagens temáticas de alta qualidade (Unsplash) + fallbacks SVG integrados
+         */
+        const CONTINENTS_DATA = {
+            africa: {
+                id: 'africa',
+                name: 'África',
+                subtitle: 'Berço da humanidade e megadiversidade',
+                area: '30,37 milhões km²',
+                areaPercent: '20,4%',
+                population: '~1,48 bilhão',
+                countriesCount: '54 países',
+                highestPoint: 'Monte Kilimanjaro (5.895 m)',
+                accentColor: 'amber',
+                badgeBg: 'bg-amber-500',
+                // Banner fotográfico temático (Savana africana / Kilimanjaro)
+                bannerUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#d97706', '#78350f'],
+                description: 'A África é o terceiro maior continente em extensão territorial e o segundo mais populoso do planeta. Cortada pela Linha do Equador e pelos trópicos de Câncer e Capricórnio, possui enorme diversidade climática, desde o deserto do Saara até florestas tropicais e grandes savanas.',
+                highlights: [
+                    'Abriga o Rio Nilo, um dos mais extensos do mundo (6.650 km).',
+                    'Possui o maior deserto quente da Terra, o Saara.',
+                    'Reconhecida pela paleontologia como o berço evolutivo da espécie humana.',
+                    'Grande riqueza cultural, com mais de 2.000 idiomas falados.'
+                ]
+            },
+            america: {
+                id: 'america',
+                name: 'América',
+                subtitle: 'Continente de extremo a extremo latitudinal',
+                area: '42,55 milhões km²',
+                areaPercent: '28,5%',
+                population: '~1,04 bilhão',
+                countriesCount: '35 países',
+                highestPoint: 'Monte Aconcágua (6.961 m)',
+                accentColor: 'emerald',
+                badgeBg: 'bg-emerald-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#059669', '#064e3b'],
+                description: 'No modelo adotado no Brasil, a América é um único continente que se estende do Ártico ao extremo sul da Patagônia. Por sua grande extensão norte-sul, é subdividida geograficamente em América do Norte, América Central e América do Sul.',
+                highlights: [
+                    'Abriga a Floresta Amazônica e a Bacia Amazônica, a maior reserva de água doce superficial do planeta.',
+                    'A Cordilheira dos Andes é a cadeia montanhosa continental mais longa do mundo.',
+                    'Apresenta todas as zonas climáticas da Terra (polar, temperada e tropical).',
+                    'Grande diversidade cultural entre América Anglo-Saxônica e América Latina.'
+                ]
+            },
+            antartida: {
+                id: 'antartida',
+                name: 'Antártida',
+                subtitle: 'O continente gelado dedicado à ciência',
+                area: '14,20 milhões km²',
+                areaPercent: '9,5%',
+                population: 'Sem população nativa (1.000 a 5.000 pesquisadores)',
+                countriesCount: 'Nenhum (Tratado da Antártida)',
+                highestPoint: 'Maciço Vinson (4.892 m)',
+                accentColor: 'cyan',
+                badgeBg: 'bg-cyan-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1516912481808-3406841bd33c?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#0891b2', '#164e63'],
+                description: 'Localizada no Polo Sul, a Antártida (ou Antártica) é o continente mais frio, seco e ventoso da Terra. Cerca de 98% de sua superfície é coberta por uma espessa camada de gelo que concentra aproximadamente 70% de toda a água doce do planeta.',
+                highlights: [
+                    'Protegida pelo Tratado da Antártida (1959), que proíbe atividades militares e mineração.',
+                    'Registra as menores temperaturas naturais da Terra (abaixo de -89 °C).',
+                    'Fundamental para a regulação térmica dos oceanos e do clima global.',
+                    'Excluída apenas no modelo olímpico/ONU de 5 continentes habitados.'
+                ]
+            },
+            asia: {
+                id: 'asia',
+                name: 'Ásia',
+                subtitle: 'O gigante territorial e demográfico',
+                area: '44,58 milhões km²',
+                areaPercent: '29,9%',
+                population: '~4,75 bilhões',
+                countriesCount: '49 países',
+                highestPoint: 'Monte Everest (8.848 m)',
+                accentColor: 'rose',
+                badgeBg: 'bg-rose-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#e11d48', '#881337'],
+                description: 'A Ásia é o maior continente da Terra tanto em área quanto em população, reunindo quase 60% dos habitantes do planeta. Apresenta contrastes extremos, desde a Cordilheira do Himalaia até extensas planícies fluviais e arquipélagos vulcânicos.',
+                highlights: [
+                    'Possui o ponto mais alto da Terra (Monte Everest) e o ponto terrestre mais baixo (Mar Morto).',
+                    'Berço de civilizações milenares como a Mesopotâmia, Vale do Indo e China Antiga.',
+                    'Abriga as duas nações mais populosas do mundo: Índia e China.',
+                    'Forma uma única massa terrestre contígua com a Europa (Eurásia).'
+                ]
+            },
+            europa: {
+                id: 'europa',
+                name: 'Europa',
+                subtitle: 'Península histórica de profunda influência global',
+                area: '10,18 milhões km²',
+                areaPercent: '6,8%',
+                population: '~745 milhões',
+                countriesCount: '50 países',
+                highestPoint: 'Monte Elbrus (5.642 m)',
+                accentColor: 'indigo',
+                badgeBg: 'bg-indigo-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#4f46e5', '#312e81'],
+                description: 'Separada da Ásia por critérios históricos e culturais através dos Montes Urais e do Cáucaso, a Europa é o segundo menor continente em área, mas possui altíssima densidade demográfica e grande integração econômica e política.',
+                highlights: [
+                    'Lar da União Europeia, o bloco de integração regional mais avançado do mundo.',
+                    'Litoral extremamente recortado com numerosas penínsulas, mares interiores e ilhas.',
+                    'Abriga o menor país do mundo em área e população: o Vaticano.',
+                    'Clima predominantemente temperado, suavizado pela Corrente do Golfo.'
+                ]
+            },
+            oceania: {
+                id: 'oceania',
+                name: 'Oceania',
+                subtitle: 'O continente insular do Pacífico',
+                area: '8,52 milhões km²',
+                areaPercent: '5,7%',
+                population: '~45 milhões',
+                countriesCount: '14 países',
+                highestPoint: 'Puncak Jaya (4.884 m)',
+                accentColor: 'teal',
+                badgeBg: 'bg-teal-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#0d9488', '#134e4a'],
+                description: 'Menor continente da Terra em extensão territorial, a Oceania é formada pela massa continental da Austrália e por milhares de ilhas espalhadas pelo Oceano Pacífico, divididas em Melanésia, Micronésia e Polinésia.',
+                highlights: [
+                    'A Austrália representa cerca de 86% de toda a área terrestre do continente.',
+                    'Abriga a Grande Barreira de Coral, o maior sistema de recifes do planeta.',
+                    'Fauna e flora únicas no mundo devido ao isolamento geográfico milenar.',
+                    'Forte presença de culturas indígenas aborígenes, maoris e polinésias.'
+                ]
+            },
+            // Entradas especiais para os modelos de 7 e 4 continentes
+            america_norte: {
+                id: 'america_norte',
+                name: 'América do Norte',
+                subtitle: 'Divisão adotada no modelo de 7 continentes',
+                area: '24,71 milhões km²',
+                areaPercent: '16,5%',
+                population: '~605 milhões',
+                countriesCount: '23 países (inclui América Central e Caribe)',
+                highestPoint: 'Monte Denali (6.190 m)',
+                accentColor: 'emerald',
+                badgeBg: 'bg-emerald-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#059669', '#064e3b'],
+                description: 'No modelo anglo-saxão de 7 continentes, a América do Norte é tratada como um continente próprio, englobando Canadá, Estados Unidos, México, os países da América Central e as ilhas do Caribe.',
+                highlights: [
+                    'Ligada à América do Sul pelo Istmo do Panamá.',
+                    'Possui a maior ilha do mundo: a Groenlândia.',
+                    'Inclui os Grandes Lagos, maior conjunto de lagos de água doce em área.'
+                ]
+            },
+            america_sul: {
+                id: 'america_sul',
+                name: 'América do Sul',
+                subtitle: 'Divisão adotada no modelo de 7 continentes',
+                area: '17,84 milhões km²',
+                areaPercent: '12,0%',
+                population: '~439 milhões',
+                countriesCount: '12 países soberanos',
+                highestPoint: 'Monte Aconcágua (6.961 m)',
+                accentColor: 'lime',
+                badgeBg: 'bg-lime-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#65a30d', '#365314'],
+                description: 'No modelo de 7 continentes, a América do Sul é um continente independente situado majoritariamente no hemisfério sul, destacando-se pela biodiversidade amazônica e pela Cordilheira dos Andes.',
+                highlights: [
+                    'Abriga o Brasil, maior país da região em área e população.',
+                    'Possui o Deserto do Atacama, o deserto não polar mais árido do mundo.',
+                    'Contém o Salto Ángel, a cachoeira mais alta do planeta (979 m).'
+                ]
+            },
+            afro_eurasia: {
+                id: 'afro_eurasia',
+                name: 'Afro-Eurásia',
+                subtitle: 'Supercontinente contínuo do modelo físico (4 continentes)',
+                area: '85,13 milhões km²',
+                areaPercent: '57,1%',
+                population: '~6,97 bilhões',
+                countriesCount: '153 países',
+                highestPoint: 'Monte Everest (8.848 m)',
+                accentColor: 'purple',
+                badgeBg: 'bg-purple-600',
+                bannerUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80',
+                cardUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+                fallbackColors: ['#7c3aed', '#4c1d95'],
+                description: 'Pelo critério estritamente físico de massas de terra contíguas cercadas por oceanos, África, Europa e Ásia formam uma única supermassa terrestre chamada Afro-Eurásia, concentrando mais de 85% da população mundial.',
+                highlights: [
+                    'Unida originalmente pelo Istmo de Suez (hoje atravessado pelo Canal de Suez).',
+                    'Reúne quase 60% de todas as terras emersas do planeta.',
+                    'Abriga a grande maioria da população e das línguas humanas.'
+                ]
+            }
+        };
+
+        /**
+         * Configuração dos Modelos Continentais
+         */
+        const MODELS_CONFIG = {
+            '6': {
+                label: 'Modelo de 6 Continentes',
+                description: 'No Brasil e na maior parte da América Latina, adota-se o modelo de <strong>6 continentes</strong>, onde a América é considerada uma única massa continental subdividida em Norte, Central e Sul.',
+                usage: 'Brasil, América Latina e países de língua portuguesa/espanhola',
+                totalArea: '149,4 milhões km²',
+                keys: ['africa', 'america', 'antartida', 'asia', 'europa', 'oceania']
+            },
+            '7': {
+                label: 'Modelo de 7 Continentes',
+                description: 'No modelo de <strong>7 continentes</strong>, a América é dividida em dois continentes distintos: América do Norte e América do Sul, mantendo África, Antártida, Ásia, Europa e Oceania.',
+                usage: 'Países de língua inglesa, China, Índia e Europa Ocidental',
+                totalArea: '149,4 milhões km²',
+                keys: ['africa', 'america_norte', 'america_sul', 'antartida', 'asia', 'europa', 'oceania']
+            },
+            '5': {
+                label: 'Modelo de 5 Continentes',
+                description: 'O modelo de <strong>5 continentes</strong> considera apenas os continentes permanentemente habitados pelos seres humanos, excluindo a Antártida. É o modelo simbolizado pelos cinco anéis olímpicos.',
+                usage: 'Comitê Olímpico Internacional (COI) e divisões da ONU',
+                totalArea: '135,2 milhões km² (habitáveis)',
+                keys: ['africa', 'america', 'asia', 'europa', 'oceania']
+            },
+            '4': {
+                label: 'Modelo de 4 Continentes',
+                description: 'O modelo de <strong>4 continentes</strong> utiliza um critério puramente físico/geográfico: grandes massas de terra contínuas separadas por oceanos (Afro-Eurásia, América, Antártida e Oceania/Austrália).',
+                usage: 'Geografia física estrita e geologia superficial',
+                totalArea: '149,4 milhões km²',
+                keys: ['afro_eurasia', 'america', 'antartida', 'oceania']
+            }
+        };
+
+        // Estado da Aplicação
+        let currentModel = '6';
+        let currentSlideIndex = 0;
+        let carouselInterval = null;
+        const heroKeys = ['africa', 'america', 'antartida', 'asia', 'europa', 'oceania'];
+
+        /**
+         * Gera um SVG de fallback elegante caso alguma imagem externa falhe ao carregar
+         */
+        function getFallbackSVG(name, colors) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="${colors[0]}"/>
+                        <stop offset="100%" stop-color="${colors[1]}"/>
+                    </linearGradient>
+                </defs>
+                <rect width="1200" height="600" fill="url(#g)"/>
+                <circle cx="950" cy="180" r="240" fill="rgba(255,255,255,0.08)"/>
+                <circle cx="220" cy="480" r="300" fill="rgba(255,255,255,0.05)"/>
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="64" font-weight="bold" fill="rgba(255,255,255,0.9)">${name}</text>
+            </svg>`;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
+
+        /**
+         * Renderiza o Carrossel de Banners Principais
+         */
+        function renderHeroCarousel() {
+            const slidesContainer = document.getElementById('hero-carousel-slides');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            slidesContainer.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            heroKeys.forEach((key, index) => {
+                const item = CONTINENTS_DATA[key];
+                const isActive = index === currentSlideIndex;
+                const fallbackSrc = getFallbackSVG(item.name, item.fallbackColors);
+
+                // Slide
+                const slide = document.createElement('div');
+                slide.className = `absolute inset-0 transition-opacity duration-700 ease-in-out ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`;
+                slide.innerHTML = `
+                    <img src="${item.bannerUrl}" 
+                         alt="Banner paisagem do continente ${item.name}" 
+                         onerror="this.onerror=null; this.src='${fallbackSrc}';"
+                         class="w-full h-full object-cover object-center scale-105 transition-transform duration-[8000ms] ${isActive ? 'scale-100' : 'scale-105'}">
+                    <div class="absolute inset-0 banner-gradient-overlay"></div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14 pb-20 sm:pb-24">
+                        <div class="max-w-3xl animate-slide-up">
+                            <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${item.badgeBg} shadow-lg">
+                                    Continente ${index + 1} de 6
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium text-slate-200 glass-panel bg-white/10 border border-white/15">
+                                    Área: ${item.area}
+                                </span>
+                                <span class="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-medium text-slate-200 glass-panel bg-white/10 border border-white/15">
+                                    População: ${item.population}
+                                </span>
+                            </div>
+
+                            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+                                ${item.name}
+                            </h1>
+                            <p class="mt-2 sm:mt-3 text-base sm:text-lg text-slate-200 max-w-2xl line-clamp-2 sm:line-clamp-3">
+                                ${item.description}
+                            </p>
+
+                            <div class="mt-5 flex flex-wrap items-center gap-3">
+                                <button onclick="openContinentModal('${item.id}')" class="px-5 py-3 rounded-xl bg-white text-slate-900 hover:bg-sky-50 font-semibold text-sm flex items-center gap-2 shadow-lg transition-all hover:scale-[1.02]">
+                                    <span>Explorar Dossiê</span>
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                                <a href="#explorar" class="px-5 py-3 rounded-xl glass-panel bg-white/15 hover:bg-white/25 text-white border border-white/20 font-medium text-sm transition-colors">
+                                    Ver Todos os Banners
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                slidesContainer.appendChild(slide);
+
+                // Botão indicador inferior (Pill com nome do continente)
+                const dot = document.createElement('button');
+                dot.className = `px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
+                    isActive 
+                    ? 'bg-white text-slate-900 shadow-md scale-105' 
+                    : 'bg-white/15 text-white/80 hover:bg-white/30 backdrop-blur-md'
+                }`;
+                dot.textContent = item.name;
+                dot.onclick = () => {
+                    goToSlide(index);
+                    resetCarouselTimer();
+                };
+                dotsContainer.appendChild(dot);
+            });
+
+            lucide.createIcons();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = (index + heroKeys.length) % heroKeys.length;
+            renderHeroCarousel();
+        }
+
+        function startCarouselTimer() {
+            carouselInterval = setInterval(() => {
+                goToSlide(currentSlideIndex + 1);
+            }, 6500);
+        }
+
+        function resetCarouselTimer() {
+            clearInterval(carouselInterval);
+            startCarouselTimer();
+        }
+
+        /**
+         * Renderiza os Cards com Banners conforme o Modelo Selecionado (6, 7, 5 ou 4)
+         */
+        function renderModelView() {
+            const config = MODELS_CONFIG[currentModel];
+            
+            // Atualiza descrição e badge do modelo
+            document.getElementById('model-description').innerHTML = config.description;
+            document.getElementById('active-model-badge').innerHTML = `
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span>Exibindo: ${config.label}</span>
+            `;
+
+            // Atualiza barra de estatísticas do modelo
+            const statsBar = document.getElementById('model-stats-bar');
+            statsBar.innerHTML = `
+                <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+                    <span class="text-xs text-slate-500 dark:text-slate-400 block">Divisões Consideradas</span>
+                    <span class="font-display font-bold text-lg text-slate-900 dark:text-white">${config.keys.length} Continentes</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+                    <span class="text-xs text-slate-500 dark:text-slate-400 block">Superfície Terrestre</span>
+                    <span class="font-display font-bold text-lg text-slate-900 dark:text-white">${config.totalArea}</span>
+                </div>
+                <div class="col-span-2 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+                    <span class="text-xs text-slate-500 dark:text-slate-400 block">Onde é mais adotado</span>
+                    <span class="font-medium text-sm text-slate-800 dark:text-slate-200">${config.usage}</span>
+                </div>
+            `;
+
+            // Renderiza os cards com banners
+            const grid = document.getElementById('continents-grid');
+            grid.innerHTML = '';
+
+            config.keys.forEach((key) => {
+                const item = CONTINENTS_DATA[key];
+                const fallbackSrc = getFallbackSVG(item.name, item.fallbackColors);
+
+                const card = document.createElement('article');
+                card.className = 'group rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer';
+                card.onclick = () => openContinentModal(item.id);
+
+                card.innerHTML = `
+                    <!-- Banner Visual do Card -->
+                    <div class="relative h-56 sm:h-60 overflow-hidden bg-slate-800">
+                        <img src="${item.cardUrl}" 
+                             alt="Banner de ${item.name}" 
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='${fallbackSrc}';"
+                             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 card-banner-overlay"></div>
+                        
+                        <!-- Etiqueta Superior -->
+                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold text-white ${item.badgeBg} shadow-md">
+                                ${item.areaPercent} das terras
+                            </span>
+                            <span class="p-2 rounded-full glass-panel bg-slate-900/40 text-white border border-white/15 group-hover:bg-white group-hover:text-slate-900 transition-colors">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+
+                        <!-- Título sobreposto na base do Banner -->
+                        <div class="absolute bottom-4 left-5 right-5">
+                            <p class="text-xs font-medium text-slate-300 mb-0.5">${item.subtitle}</p>
+                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                                ${item.name}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Corpo Informativo do Card -->
+                    <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                        <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+                            ${item.description}
+                        </p>
+
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-3 text-xs">
+                            <div>
+                                <span class="text-slate-400 block">Extensão</span>
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">${item.area}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block">Países / Territórios</span>
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">${item.countriesCount}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        /**
+         * Abre o Modal com Dossiê Detalhado do Continente
+         */
+        function openContinentModal(continentId) {
+            const item = CONTINENTS_DATA[continentId];
+            if (!item) return;
+
+            const fallbackSrc = getFallbackSVG(item.name, item.fallbackColors);
+            const modal = document.getElementById('continent-modal');
+            const modalContent = document.getElementById('modal-content');
+
+            modalContent.innerHTML = `
+                <!-- Banner de Cabeçalho do Modal -->
+                <div class="relative h-64 sm:h-72 bg-slate-900">
+                    <img src="${item.bannerUrl}" 
+                         alt="Banner detalhado de ${item.name}" 
+                         onerror="this.onerror=null; this.src='${fallbackSrc}';"
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 banner-gradient-overlay"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${item.badgeBg}">
+                            Dossiê Geográfico
+                        </span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2">
+                            ${item.name}
+                        </h2>
+                        <p class="text-slate-200 text-sm sm:text-base mt-1">${item.subtitle}</p>
+                    </div>
+                </div>
+
+                <!-- Dados Estruturados -->
+                <div class="p-6 sm:p-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/50">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block">Área Total</span>
+                            <span class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white mt-0.5 block">${item.area}</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/50">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block">População</span>
+                            <span class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white mt-0.5 block">${item.population}</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/50">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block">Divisão Política</span>
+                            <span class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white mt-0.5 block">${item.countriesCount}</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/50">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block">Ponto Culminante</span>
+                            <span class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white mt-0.5 block">${item.highestPoint}</span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white mb-2">Visão Geral</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                        ${item.description}
+                    </p>
+
+                    <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white mb-3">Destaques e Curiosidades</h3>
+                    <ul class="space-y-2.5">
+                        ${item.highlights.map(h => `
+                            <li class="flex items-start gap-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl">
+                                <i data-lucide="sparkles" class="w-5 h-5 text-sky-500 shrink-0 mt-0.5"></i>
+                                <span>${h}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeContinentModal() {
+            const modal = document.getElementById('continent-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        /**
+         * Inicialização de Eventos e Tema
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Configuração inicial do tema (respeita preferência do sistema)
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+
+            // 2. Controles do Carrossel
+            document.getElementById('prev-slide').addEventListener('click', () => {
+                goToSlide(currentSlideIndex - 1);
+                resetCarouselTimer();
+            });
+
+            document.getElementById('next-slide').addEventListener('click', () => {
+                goToSlide(currentSlideIndex + 1);
+                resetCarouselTimer();
+            });
+
+            // Suporte a gestos de deslize (Swipe) no carrossel para dispositivos móveis
+            let touchStartX = 0;
+            const carouselEl = document.getElementById('hero-carousel-slides');
+            carouselEl.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carouselEl.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    goToSlide(currentSlideIndex + 1);
+                    resetCarouselTimer();
+                } else if (touchEndX - touchStartX > 50) {
+                    goToSlide(currentSlideIndex - 1);
+                    resetCarouselTimer();
+                }
+            }, { passive: true });
+
+            // 3. Seletor de Modelos Continentais (6, 7, 5, 4)
+            document.querySelectorAll('.model-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.model-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-white', 'dark:bg-slate-700', 'text-sky-600', 'dark:text-sky-300', 'shadow-sm');
+                        b.classList.add('text-slate-600', 'dark:text-slate-400');
+                    });
+                    btn.classList.add('active', 'bg-white', 'dark:bg-slate-700', 'text-sky-600', 'dark:text-sky-300', 'shadow-sm');
+                    btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+
+                    currentModel = btn.getAttribute('data-model');
+                    renderModelView();
+                });
+            });
+
+            // 4. Fechamento do Modal (botão, clique fora ou tecla ESC)
+            document.getElementById('close-modal').addEventListener('click', closeContinentModal);
+            document.getElementById('continent-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'continent-modal') closeContinentModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeContinentModal();
+            });
+
+            // Renderização inicial
+            renderHeroCarousel();
+            renderModelView();
+            startCarouselTimer();
+        });
+    </script>
+</body>
+</html>
