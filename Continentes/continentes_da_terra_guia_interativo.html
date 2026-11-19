@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Continentes da Terra — Atlas Interativo</title>
+    <!-- Bootstrap para a estrutura responsiva e os componentes da página -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Carregamento do Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fontes Google: Inter e Plus Jakarta Sans -->
@@ -72,7 +74,7 @@
 
     <!-- Barra de Navegação Superior -->
     <header class="sticky top-0 z-40 w-full glass-panel bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="container-xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Logo / Título -->
             <a href="#" class="flex items-center gap-2.5 group">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
@@ -85,15 +87,15 @@
             </a>
 
             <!-- Links de Navegação Desktop -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
-                <a href="#destaques" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Banners em Destaque</a>
-                <a href="#modelos" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Modelos Continentais</a>
-                <a href="#explorar" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Explorar Continentes</a>
+            <nav class="hidden md:flex navbar-nav flex-row gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#destaques" class="nav-link hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Banners em Destaque</a>
+                <a href="#modelos" class="nav-link hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Modelos Continentais</a>
+                <a href="#explorar" class="nav-link hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Explorar Continentes</a>
             </nav>
 
             <!-- Controles de Ação (Tema e Filtro Rápido) -->
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" aria-label="Alternar tema claro ou escuro" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                <button id="theme-toggle" aria-label="Alternar tema claro ou escuro" class="btn btn-outline-secondary p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-700"></i>
                 </button>
@@ -102,7 +104,7 @@
     </header>
 
     <!-- Seção Principal: Carrossel de Banners dos Continentes -->
-    <section id="destaques" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10">
+    <section id="destaques" class="container-xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-200/20 dark:border-slate-800 h-[440px] sm:h-[500px] lg:h-[540px] group">
             
             <!-- Container dos Slides do Carrossel -->
@@ -132,7 +134,7 @@
     </section>
 
     <!-- Seção Explicativa: Seletor de Modelos Continentais -->
-    <section id="modelos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section id="modelos" class="container-xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div class="max-w-2xl">
@@ -150,16 +152,16 @@
 
                 <!-- Botões de Alternância de Modelo -->
                 <div class="flex flex-wrap gap-2 bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl self-start lg:self-center">
-                    <button data-model="6" class="model-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white dark:bg-slate-700 text-sky-600 dark:text-sky-300 shadow-sm">
+                    <button data-model="6" class="btn btn-sm btn-primary model-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm">
                         6 Continentes (Brasil)
                     </button>
-                    <button data-model="7" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <button data-model="7" class="btn btn-sm btn-outline-secondary model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
                         7 Continentes
                     </button>
-                    <button data-model="5" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <button data-model="5" class="btn btn-sm btn-outline-secondary model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
                         5 Continentes (ONU/Olímpico)
                     </button>
-                    <button data-model="4" class="model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <button data-model="4" class="btn btn-sm btn-outline-secondary model-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
                         4 Continentes (Físico)
                     </button>
                 </div>
@@ -173,7 +175,7 @@
     </section>
 
     <!-- Seção Principal de Cards com Banners dos Continentes -->
-    <section id="explorar" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
+    <section id="explorar" class="container-xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
                 <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
@@ -190,27 +192,29 @@
         </div>
 
         <!-- Grid Responsivo de Banners/Cards -->
-        <div id="continents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div id="continents-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <!-- Cards com Banners injetados via JavaScript -->
         </div>
     </section>
 
     <!-- Modal de Detalhes do Continente -->
-    <div id="continent-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/75 glass-panel animate-fade-in" role="dialog" aria-modal="true">
-        <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl">
+    <div id="continent-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+          <div class="modal-content relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl">
             <!-- Botão Fechar -->
             <button id="close-modal" aria-label="Fechar detalhes" class="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white backdrop-blur-md transition-colors">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
             <!-- Conteúdo do Modal injetado dinamicamente -->
-            <div id="modal-content"></div>
+            <div id="modal-content" class="modal-body p-0"></div>
+          </div>
         </div>
     </div>
 
     <!-- Rodapé -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <footer class="border-top border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-8">
+        <div class="container-xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
             <div class="flex items-center gap-2">
                 <i data-lucide="compass" class="w-4 h-4 text-sky-500"></i>
                 <span>TerraAtlas — Material Didático Interativo sobre os Continentes da Terra</span>
@@ -219,6 +223,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Lógica JavaScript Completa -->
     <script>
         /**
@@ -531,11 +536,11 @@
                             </p>
 
                             <div class="mt-5 flex flex-wrap items-center gap-3">
-                                <button onclick="openContinentModal('${item.id}')" class="px-5 py-3 rounded-xl bg-white text-slate-900 hover:bg-sky-50 font-semibold text-sm flex items-center gap-2 shadow-lg transition-all hover:scale-[1.02]">
+                                <button onclick="openContinentModal('${item.id}')" class="btn btn-light px-5 py-3 rounded-xl text-slate-900 hover:bg-sky-50 font-semibold text-sm flex items-center gap-2 shadow-lg transition-all hover:scale-[1.02]">
                                     <span>Explorar Dossiê</span>
                                     <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                                 </button>
-                                <a href="#explorar" class="px-5 py-3 rounded-xl glass-panel bg-white/15 hover:bg-white/25 text-white border border-white/20 font-medium text-sm transition-colors">
+                                <a href="#explorar" class="btn btn-outline-light px-5 py-3 rounded-xl glass-panel bg-white/15 hover:bg-white/25 text-white border border-white/20 font-medium text-sm transition-colors">
                                     Ver Todos os Banners
                                 </a>
                             </div>
@@ -617,7 +622,7 @@
                 const fallbackSrc = getFallbackSVG(item.name, item.fallbackColors);
 
                 const card = document.createElement('article');
-                card.className = 'group rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer';
+                card.className = 'col card group rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer';
                 card.onclick = () => openContinentModal(item.id);
 
                 card.innerHTML = `
@@ -741,17 +746,13 @@
                 </div>
             `;
 
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+            bootstrap.Modal.getOrCreateInstance(modal).show();
             lucide.createIcons();
         }
 
         function closeContinentModal() {
             const modal = document.getElementById('continent-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = '';
+            bootstrap.Modal.getOrCreateInstance(modal).hide();
         }
 
         /**
@@ -800,11 +801,11 @@
             document.querySelectorAll('.model-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.model-btn').forEach(b => {
-                        b.classList.remove('active', 'bg-white', 'dark:bg-slate-700', 'text-sky-600', 'dark:text-sky-300', 'shadow-sm');
-                        b.classList.add('text-slate-600', 'dark:text-slate-400');
+                        b.classList.remove('active', 'btn-primary');
+                        b.classList.add('btn-outline-secondary');
                     });
-                    btn.classList.add('active', 'bg-white', 'dark:bg-slate-700', 'text-sky-600', 'dark:text-sky-300', 'shadow-sm');
-                    btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+                    btn.classList.add('active', 'btn-primary');
+                    btn.classList.remove('btn-outline-secondary');
 
                     currentModel = btn.getAttribute('data-model');
                     renderModelView();
@@ -813,13 +814,6 @@
 
             // 4. Fechamento do Modal (botão, clique fora ou tecla ESC)
             document.getElementById('close-modal').addEventListener('click', closeContinentModal);
-            document.getElementById('continent-modal').addEventListener('click', (e) => {
-                if (e.target.id === 'continent-modal') closeContinentModal();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeContinentModal();
-            });
-
             // Renderização inicial
             renderHeroCarousel();
             renderModelView();
